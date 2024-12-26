@@ -19,7 +19,8 @@ const Login = () => {
     try {
       const response = await axios.post('http://localhost:5000/api/auth/login', { email, password });
       alert(response.data.message);
-        nameref.current=response.data.name;
+        
+        console.log(nameref);
        // Handle success (You can store JWT in localStorage)
       dispatch(addUser({Name:'text_name',email:email}))
       navigate('/')
