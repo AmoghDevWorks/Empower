@@ -6,12 +6,13 @@ const Login = () => {
   const passwordRef = useRef(null)
 
   const handleClick = () =>{
-
+    const email = emailRef.current.value
+    const password = passwordRef.current.value
   }
 
   return (
-    <div className='min-h-screen w-screen flex my-36 items-start justify-center'>
-      <div className='h-fit w-1/3 bg-slate-200 p-4 flex items-center justify-center flex-col gap-3 rounded-lg'>
+    <div className='min-h-screen w-screen flex my-28 items-start justify-center'>
+      <div className='h-fit w-1/3 bg-green-100 p-4 flex items-center justify-center flex-col gap-3 rounded-lg'>
         <h1 className='text-center text-5xl font-bold font-serif text-blue-700 mb-4'>Login</h1>
         <div className='w-full flex items-start justify-center gap-3 flex-col my-2'>
             <label htmlFor='email' className='text-xl font-semibold'>Email:</label>
