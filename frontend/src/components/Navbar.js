@@ -3,27 +3,53 @@ import {Link} from 'react-router-dom'
 
 const Navbar = () => {
   return (
-    <header className="text-gray-600 body-font">
-  <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-    <Link to={'/'} className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
-        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-      </svg>
-      <span className="ml-3 text-xl">Empower</span>
-    </Link>
-    <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
-      <Link to={'/'} className="mr-5 hover:text-gray-900">Home</Link>
-      <Link className="mr-5 hover:text-gray-900">HealthCare</Link>
-      <Link className="mr-5 hover:text-gray-900">Finance</Link>
-      <Link className="mr-5 hover:text-gray-900">Safety and Security</Link>
-    </nav>
-    <Link to={'/login'} className="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Login
-      <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-4 h-4 ml-1" viewBox="0 0 24 24">
-        <path d="M5 12h14M12 5l7 7-7 7"></path>
-      </svg>
-    </Link>
-  </div>
-</header>
+    <div className="flex items-center justify-between h-20 w-full bg-black relative p-2 border-b-[1px] border-solid border-zinc-50">
+        <div className="text-blue-700 font-bold text-2xl flex items-center gap-2 font-serif">
+            Empower
+        </div>
+        <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center text-blue-700 text-sm font-semibold bg-zinc-950 rounded-full backdrop-blur-sm px-5 py-1 overflow-hidden border border-zinc-700">
+            <Link to={'/'} className="hover:text-zinc-100 hover:bg-zinc-800 hover:rounded-full transition duration-700 px-4 py-1.5 rounded-full relative group isolate">
+                <div className="absolute -bottom-5 left-1/2 -translate-x-1/2  duration-700 w-8 h-6 blur-[12px] bg-zinc-700 opacity-0 group-hover:opacity-100 transition -z-10">
+                </div>
+                <div className="absolute -top-5 left-1/2 -translate-x-1/2  duration-700 w-8 h-6 blur-[12px] bg-zinc-700 opacity-0 group-hover:opacity-100 transition -z-10">
+                </div>
+                <span className="z-10 relative text-md">Home</span>
+            </Link>
+            <Link to={''} className="hover:text-zinc-100 hover:bg-zinc-800 hover:rounded-full transition px-4 py-1.5 duration-700 rounded-full relative group isolate">
+                <div className="absolute -bottom-5 left-1/2 -translate-x-1/2  duration-700 w-8 h-6 blur-[12px] bg-zinc-700 opacity-0 group-hover:opacity-100 transition -z-10">
+                </div>
+                <div className="absolute -top-5 left-1/2 -translate-x-1/2  duration-700 w-8 h-6 blur-[12px] bg-zinc-700 opacity-0 group-hover:opacity-100 transition -z-10">
+                </div>
+                <span className="z-10 relative text-md">HealthCare</span>
+            </Link>
+            <Link to={''} className="hover:text-zinc-100 hover:bg-zinc-800 hover:rounded-full transition px-4 py-1.5 duration-700 rounded-full relative group isolate">
+                <div className="absolute -bottom-5 left-1/2 -translate-x-1/2  duration-700 w-8 h-6 blur-[12px] bg-zinc-700 opacity-0 group-hover:opacity-100 transition -z-10">
+                </div>
+                <div className="absolute -top-5 left-1/2 -translate-x-1/2  duration-700 w-8 h-6 blur-[12px] bg-zinc-700 opacity-0 group-hover:opacity-100 transition -z-10">
+                </div>
+                <span className="z-10 relative text-md">Finance</span>
+            </Link>
+            <Link to={''} className="hover:text-zinc-100 hover:bg-zinc-800 hover:rounded-full transition px-4 py-1.5 duration-700 rounded-full relative group isolate">
+                <div className="absolute -bottom-5 left-1/2 -translate-x-1/2  duration-700 w-8 h-6 blur-[12px] bg-zinc-700 opacity-0 group-hover:opacity-100 transition -z-10">
+                </div>
+                <div className="absolute -top-5 left-1/2 -translate-x-1/2  duration-700 w-8 h-6 blur-[12px] bg-zinc-700 opacity-0 group-hover:opacity-100 transition -z-10">
+                </div>
+                <span className="z-10 relative text-md">Safety and Security</span>
+            </Link>
+        </div>
+        <div className="flex items-center justify-center gap-3">
+            <Link to={'/login'} className="text-blue-700 font-medium hover:text-zinc-300 transition">Log In</Link>
+            <Link to={'/signup'} className="text-blue-700 rounded-full px-5 py-1.5 bg-zinc-950 font-medium flex items-center transition border border-zinc-700 relative overflow-hidden group">
+                Sign Up
+                <svg className="inline-block ml-2 group-hover:translate-x-2 transition duration-1000" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M13.3 17.275q-.3-.3-.288-.725t.313-.725L16.15 13H5q-.425 0-.713-.288T4 12q0-.425.288-.713T5 11h11.15L13.325 8.175q-.3-.3-.313-.725t.288-.725q.3-.3.725-.288t.725.313l4.15 4.15q.15.15.213.325t.063.375q0 .2-.063.375t-.213.325l-4.15 4.15q-.3.3-.725.313t-.725-.288Z"/>
+                </svg>
+                <div className="absolute -left-6 top-1/2 -translate-y-1/2 w-12 h-3 bg-zinc-100 blur-[18px] group-hover:scale-[3] opacity-0 group-hover:opacity-100 transition duration-1000">
+
+                </div>
+            </Link>
+        </div>
+        </div>
   )
 }
 
