@@ -15,7 +15,7 @@ const Signup = () => {
   }
 
   return (
-    <div className='bg-gradient-to-r from-cyan-100 to-blue-500 min-h-[90vh] flex items-center justify-center'>
+    <div className='text-indigo-600 bg-gradient-to-br from-cyan-100 to-blue-500 min-h-[90vh] flex items-center justify-center'>
         <div className='h-fit w-1/3 bg-gradient-to-b from-green-100 to-green-300 p-5 flex flex-col justify-center items-center rounded-lg'>
             <h1 className='text-5xl font-bold text-center font-serif my-5 underline underline-offset-4'>SignUp</h1>
             <div className='w-full flex items-start justify-center gap-1 flex-col my-2'>
