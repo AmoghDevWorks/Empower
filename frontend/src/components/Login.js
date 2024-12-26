@@ -5,10 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import { addUser } from '../utils/UserSlice';
 
 const Login = () => {
-
+     
   const emailRef = useRef(null);
   const passwordRef = useRef(null)
-
+   const nameref=useRef(null)
   const dispatch = useDispatch();
   const navigate = useNavigate()
 
@@ -18,7 +18,9 @@ const Login = () => {
 
     try {
       const response = await axios.post('http://localhost:5000/api/auth/login', { email, password });
-      alert(response.data.message); // Handle success (You can store JWT in localStorage)
+      alert(response.data.message);
+        nameref.current=response.data.name;
+       // Handle success (You can store JWT in localStorage)
       dispatch(addUser({Name:'text_name',email:email}))
       navigate('/')
     } catch (error) {
