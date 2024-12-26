@@ -1,10 +1,16 @@
 import React, { useRef } from 'react'
 import axios from 'axios'
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { addUser } from '../utils/UserSlice';
 
 const Login = () => {
 
   const emailRef = useRef(null);
   const passwordRef = useRef(null)
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   const handleClick = async () => {
     const email = emailRef.current.value;
@@ -13,6 +19,8 @@ const Login = () => {
     try {
       const response = await axios.post('http://localhost:5000/api/auth/login', { email, password });
       alert(response.data.message); // Handle success (You can store JWT in localStorage)
+      dispatch(addUser({Name:'text_name',email:email}))
+      navigate('/')
     } catch (error) {
       alert(error.response.data.message); // Handle error
     }

@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import axios from 'axios'
 
 const Signup = () => {
@@ -8,6 +8,8 @@ const Signup = () => {
   const nameRef = useRef(null)
   const contactRef = useRef(null)
   const passwordRef = useRef(null)
+
+  const navigate = useNavigate();
   
   const handleClick = async() =>{
     const name = nameRef.current.value
@@ -20,6 +22,7 @@ const Signup = () => {
     try {
         const response = await axios.post('http://localhost:5000/api/auth/register', { name,email,contact, password });
         alert(response.data.message); // Handle success (You can store JWT in localStorage)
+        navigate('/login')
       } catch (error) {
         alert(error.response.data.message); // Handle error
       }
