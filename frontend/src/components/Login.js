@@ -19,8 +19,8 @@ const Login = () => {
   }
 
   return (
-    <div className='min-h-screen w-screen flex my-28 items-start justify-center'>
-      <div className='h-fit w-1/3 bg-green-100 p-4 flex items-center justify-center flex-col gap-3 rounded-lg'>
+    <div className='text-indigo-600 min-h-screen w-[99vw] flex pt-24 items-start justify-center bg-slate-100'>
+    <div className='h-fit w-1/3 bg-gradient-to-br from-gray-100 to-gray-300 p-8 flex items-center justify-center flex-col gap-6 rounded-lg'>
         <h1 className='text-center text-5xl font-bold font-serif text-blue-700 mb-4'>Login</h1>
         <div className='w-full flex items-start justify-center gap-3 flex-col my-2'>
             <label htmlFor='email' className='text-xl font-semibold'>Email:</label>

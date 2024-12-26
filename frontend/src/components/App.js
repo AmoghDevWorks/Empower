@@ -55,7 +55,12 @@ const App = () => {
             </div>
           </div>
         </div>
-        <button className="flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Login</button>
+        <div className='flex items-center justify-center my-6'>
+          <Link to={'/login'} class="px-6 py-2.5 text-white text-lg font-bold uppercase tracking-widest rounded-lg bg-indigo-500 shadow-xl transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500">
+              Login
+          </Link>
+        </div>
+        
       </div>
     </section>
   )

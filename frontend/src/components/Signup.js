@@ -1,4 +1,5 @@
 import React, { useRef } from 'react'
+import {Link} from 'react-router-dom'
 
 const Signup = () => {
 
@@ -15,8 +16,8 @@ const Signup = () => {
   }
 
   return (
-    <div className='text-indigo-600 bg-gradient-to-br from-cyan-100 to-blue-500 min-h-[90vh] flex items-center justify-center'>
-        <div className='h-fit w-1/3 bg-gradient-to-b from-green-100 to-green-300 p-5 flex flex-col justify-center items-center rounded-lg'>
+    <div className='text-indigo-600 bg-slate-100 min-h-[90vh] flex items-center justify-center'>
+        <div className='h-fit w-1/3 bg-gradient-to-br from-gray-100 to-gray-300 p-5 flex flex-col justify-center items-center rounded-lg'>
             <h1 className='text-5xl font-bold text-center font-serif my-5 underline underline-offset-4'>SignUp</h1>
             <div className='w-full flex items-start justify-center gap-1 flex-col my-2'>
                 <label htmlFor='name' className='text-xl font-semibold'>Name:</label>
@@ -37,6 +38,7 @@ const Signup = () => {
             <button onClick={handleClick} className='mt-2 py-2 px-6 font-semibold text-lg border-2 border-solid border-black rounded-xl hover:bg-black hover:text-slate-200'>
                 SignUp
             </button>
+            <p className='text-xl mt-2'>Already has an account?<span className='underline underline-offset-2'><Link to={'/login'}>Login</Link></span></p>
         </div>
     </div>
   )
