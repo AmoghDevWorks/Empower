@@ -11,9 +11,9 @@ const Login = () => {
   }
 
   return (
-    <div className='min-h-screen w-screen flex my-28 items-start justify-center'>
-      <div className='h-fit w-1/3 bg-green-100 p-4 flex items-center justify-center flex-col gap-3 rounded-lg'>
-        <h1 className='text-center text-5xl font-bold font-serif text-blue-700 mb-4'>Login</h1>
+    <div className='min-h-screen w-[99vw] flex pt-24 items-start justify-center bg-gradient-to-r from-cyan-100 to-blue-500'>
+      <div className='h-fit w-1/3 bg-gradient-to-b from-green-100 to-green-300 p-8 flex items-center justify-center flex-col gap-6 rounded-lg'>
+        <h1 className='text-center text-5xl font-bold font-serif text-blue-700 mb-4 underline underline-offset-4'>Login</h1>
         <div className='w-full flex items-start justify-center gap-3 flex-col my-2'>
             <label htmlFor='email' className='text-xl font-semibold'>Email:</label>
             <input ref={emailRef} name='email' type='email' className='bg-slate-50 p-2 w-11/12 border-2 border-slate-600 border-solid rounded-md' placeholder='Enter your email'/>

@@ -9,7 +9,7 @@ import Signup from './components/Signup';
 
 const Structure = () =>{
   return(
-    <div className='bg-black text-blue-700'>
+    <div className='bg-white text-blue-700'>
       <Navbar />
       <Outlet />
     </div>
