@@ -1,2 +1,0 @@
-//db logic of all
-
