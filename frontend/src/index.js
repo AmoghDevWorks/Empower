@@ -6,6 +6,8 @@ import App from './components/App';
 import Navbar from './components/Navbar';
 import Login from './components/Login';
 import Signup from './components/Signup';
+import { Provider } from 'react-redux'
+import appStore from './utils/appStore';
 
 const Structure = () =>{
   return(
@@ -40,7 +42,9 @@ const appRouter = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={appRouter} />
+    <Provider store={appStore}>
+      <RouterProvider router={appRouter} />
+    </Provider>
   </React.StrictMode>
 );
 
