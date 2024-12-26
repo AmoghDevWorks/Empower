@@ -8,11 +8,20 @@ const Signup = () => {
   const contactRef = useRef(null)
   const passwordRef = useRef(null)
   
-  const handleClick = () =>{
+  const handleClick = async() =>{
     const name = nameRef.current.value
     const email = emailRef.current.value
     const password = passwordRef.current.value
     const contact = contactRef.current.value
+
+
+
+    try {
+        const response = await axios.post('http://localhost:5000/api/auth/register', { name,email,contact, password });
+        alert(response.data.message); // Handle success (You can store JWT in localStorage)
+      } catch (error) {
+        alert(error.response.data.message); // Handle error
+      }
   }
 
   return (
