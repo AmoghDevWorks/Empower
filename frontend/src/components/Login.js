@@ -8,7 +8,7 @@ const Login = () => {
      
   const emailRef = useRef(null);
   const passwordRef = useRef(null)
-   const nameref=useRef(null)
+   
   const dispatch = useDispatch();
   const navigate = useNavigate()
 
@@ -19,10 +19,11 @@ const Login = () => {
     try {
       const response = await axios.post('http://localhost:5000/api/auth/login', { email, password });
       alert(response.data.message);
-        
-        console.log(nameref);
-       // Handle success (You can store JWT in localStorage)
-      dispatch(addUser({Name:'text_name',email:email}))
+      console.log(response)
+      
+      const user = response.data.user
+      // Handle success (You can store JWT in localStorage)
+      dispatch(addUser({uid:user.id,Name:user.name,email:email,contact:user.contact}))
       navigate('/')
     } catch (error) {
       alert(error.response.data.message); // Handle error

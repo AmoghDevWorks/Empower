@@ -42,11 +42,20 @@ router.post('/login', async (req, res) => {
     }
 
     // Generate JWT token
-    const user1= await User.findOne({ email });
-    console.log(user1.name);
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-    res.json({ message: 'Login successful', token,user1 });
+
+    // Create a user object to send back, excluding sensitive information
+    console.log(user)
+    const userResponse = {
+      id: user._id,
+      name: user.name,
+      email: user.email,
+      contact: user.contact
+    };
+
+    res.status(200).json({ message: 'Login successful', user: userResponse,token});
   } catch (err) {
+    console.error(err); // Log the error for debugging
     res.status(500).json({ message: 'Server error' });
   }
 });
