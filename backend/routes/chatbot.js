@@ -1,10 +1,10 @@
-
+require('dotenv').config();
 const express = require('express');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
-const path=require('path');
-app.use(express.static(path.join(__dirname, 'public')));
-const router = express.Router();
 
+const router = express.Router();
+const genAI = new GoogleGenerativeAI(process.env.API_KEY);
+const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 router.post('/generate', async (req, res) => {
     const prompt = req.body.prompt ;  // Default prompt if none is provided
   
@@ -16,4 +16,5 @@ router.post('/generate', async (req, res) => {
       res.status(500).json({ error: 'Failed to generate content' });
     }
   });
-  
+
+module.exports=router;

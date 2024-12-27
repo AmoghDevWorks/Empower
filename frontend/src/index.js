@@ -15,6 +15,7 @@ import SocketIndividual from './components/HealthCare/DoctorCommunication/Socket
 import Pregnancy from './components/HealthCare/pregnancy/Pregnancy';
 import Register from './components/HealthCare/pregnancy/Register';
 import FinanceStats from './components/Finance/budgetTool/FinanceStats';
+import Chatbot from './components/chatbot';
 
 const Structure = () =>{
   return(
@@ -69,6 +70,10 @@ const appRouter = createBrowserRouter([
       {
         path:'/finance/budgettools',
         element:<FinanceStats />
+      },
+      {
+        path:'/chatbot',
+        element:<Chatbot/>
       }
     ]
   }

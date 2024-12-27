@@ -6,7 +6,7 @@ const authRoutes = require('./routes/auth');
 const { Server } = require('socket.io');
 const http = require('http');
  const financeRoutes=require('./routes/finance');
- const chatbotRoutes=require('./routes/chatbot')
+ const chatbotRoutes=require('./routes/chatbot');
 // Load environment variables
 dotenv.config();
 
