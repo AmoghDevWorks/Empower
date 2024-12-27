@@ -5,6 +5,9 @@ import { useSelector } from 'react-redux';
 const FinanceStats = () => {
   const incomeRef = useRef(null);
   const expenseRef = useRef(null);
+  const incomeDescRef = useRef(null)
+  const expenseDescRef = useRef(null)
+
   const [error, setError] = useState(null);
   const user = useSelector((state) => state.user);
   const email = user?.email || ""; // Fallback in case user is undefined
@@ -43,31 +46,60 @@ const FinanceStats = () => {
     <div className="text-slate-900 p-4 text-center mx-auto">
       <h1 className="text-6xl font-bold mb-4">Finance Statistics</h1>
       <h4 className='text-slate-600 my-5 text-xl'>"Fueling Ambitions, Empowering Women – Financial Freedom Starts Here."</h4>
-      <div className="mb-4">
-        <label htmlFor="email" className="block text-lg font-medium mb-2">
-          Enter Income:
-        </label>
-        <input
-          type="number"
-          id="income"
-          ref={incomeRef}
-          placeholder="Add Income"
-          className="border p-2 w-1/3 rounded"
-        />
+      <div className='flex justify-center items-center w-full my-10'>
+        <div className="mb-4 w-2/3">
+          <label htmlFor="email" className="block text-lg font-medium mb-2">
+            Enter Income Amount:
+          </label>
+          <input
+            type="number"
+            id="income"
+            ref={incomeRef}
+            placeholder="Add Income"
+            className="border p-2 w-1/3 rounded"
+          />
+        </div>
+        <div className="mb-4 w-2/3">
+          <label htmlFor="incomeDesc" className="block text-lg font-medium mb-2">
+            Enter Income description:
+          </label>
+          <input
+            type="text"
+            id="incomeDesc"
+            ref={incomeDescRef}
+            placeholder="Add income description"
+            className="border p-2 w-1/3 rounded"
+          />
+        </div>
       </div>
 
-      <div className="mb-4">
-        <label htmlFor="expense" className="block text-lg font-medium mb-2">
-          Enter Expense:
-        </label>
-        <input
-          type="number"
-          id="expense"
-          ref={expenseRef}
-          placeholder="Add Expenses"
-          className="border p-2 w-1/3 rounded"
-        />
+      <div className='flex justify-center items-center w-full'>
+          <div className="mb-4 w-2/3">
+            <label htmlFor="expenseAmount" className="block text-lg font-medium mb-2">
+              Enter Expense amount:
+            </label>
+            <input
+              type="number"
+              id="expenseAmount"
+              ref={expenseRef}
+              placeholder="Add Income"
+              className="border p-2 w-1/3 rounded"
+            />
+          </div>
+          <div className="mb-4 w-2/3">
+            <label htmlFor="expenseDesc" className="block text-lg font-medium mb-2">
+              Enter Expense description:
+            </label>
+            <input
+              type="text"
+              id="expenseDesc"
+              ref={expenseDescRef}
+              placeholder="Add Expenses"
+              className="border p-2 w-1/3 rounded"
+            />
+          </div>
       </div>
+      
 
       <button
         onClick={fetchFinanceData}
