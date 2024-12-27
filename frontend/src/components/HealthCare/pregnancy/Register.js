@@ -1,5 +1,6 @@
 import React, { useRef } from 'react'
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 const Register = () => {
 
@@ -9,6 +10,7 @@ const Register = () => {
   const pregnancyWeekRef = useRef(null)
   const user = useSelector((state) => state.user);
   const email = user?.email || "";
+  const navigate = useNavigate()
 
   const handleClick = () =>{
     const bloodgroup = bloodGrpRef.current.value
@@ -16,6 +18,8 @@ const Register = () => {
     const weight = weightRef.current.value
     const pregnancyWeek = pregnancyWeekRef.current.value
     //email,bloodgroup, height,weight, pregnancyweek
+
+    navigate('/healthcare/pregnancy')
   }
 
   return (

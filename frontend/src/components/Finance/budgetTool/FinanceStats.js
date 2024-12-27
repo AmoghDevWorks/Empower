@@ -42,7 +42,7 @@ const FinanceStats = () => {
   return (
     <div className="text-slate-900 p-4 text-center mx-auto">
       <h1 className="text-6xl font-bold mb-4">Finance Statistics</h1>
-
+      <h4 className='text-slate-600 my-5 text-xl'>"Fueling Ambitions, Empowering Women – Financial Freedom Starts Here."</h4>
       <div className="mb-4">
         <label htmlFor="email" className="block text-lg font-medium mb-2">
           Enter Income:
@@ -51,7 +51,7 @@ const FinanceStats = () => {
           type="number"
           id="income"
           ref={incomeRef}
-          placeholder="Enter income amount"
+          placeholder="Add Income"
           className="border p-2 w-1/3 rounded"
         />
       </div>
@@ -64,7 +64,7 @@ const FinanceStats = () => {
           type="number"
           id="expense"
           ref={expenseRef}
-          placeholder="Enter expense amount"
+          placeholder="Add Expenses"
           className="border p-2 w-1/3 rounded"
         />
       </div>
