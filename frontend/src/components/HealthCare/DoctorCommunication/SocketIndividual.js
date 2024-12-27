@@ -62,9 +62,9 @@ const SocketIndividual = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen justify-between bg-gray-100 p-5">
+    <div className="text-indigo-600 flex flex-col h-screen justify-between bg-gray-100 p-5">
       <div className="text-center text-3xl mb-5">
-        <h1>Chat with Users</h1>
+        <h1 className='font-haverbrooke text-5xl font-semibold'>Connect with a Doctor </h1>
       </div>
 
       {/* Chat Box */}
