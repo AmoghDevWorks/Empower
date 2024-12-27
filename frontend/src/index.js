@@ -11,6 +11,7 @@ import appStore from './utils/appStore';
 import HealthCare from './components/HealthCare/HealthCare';
 import Finance from './components/Finance/Finance';
 import SafetySecurity from './components/SafetySecurity/SafetySecurity';
+import SocketIndividual from './components/HealthCare/DoctorCommunication/SocketIndividual';
 
 const Structure = () =>{
   return(
@@ -49,7 +50,12 @@ const appRouter = createBrowserRouter([
       {
         path:'/safetyandsecurity',
         element:<SafetySecurity />
-      }
+      },
+      
+      {
+        path:'/healthcare/communicate',
+        element:<SocketIndividual/>
+      },
     ]
   }
 ])
