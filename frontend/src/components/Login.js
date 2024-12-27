@@ -23,7 +23,7 @@ const Login = () => {
       
       const user = response.data.user
       // Handle success (You can store JWT in localStorage)
-      dispatch(addUser({uid:user.id,Name:user.name,email:email,contact:user.contact}))
+      dispatch(addUser({uid:user.id,Name:user.name,email:email,contact:user.contact,role:user.role}))
       navigate('/')
     } catch (error) {
       alert(error.response.data.message); // Handle error

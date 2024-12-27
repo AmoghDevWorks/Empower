@@ -17,8 +17,7 @@ const Signup = () => {
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
     const contact = contactRef.current.value;
-    const role = userTypeRef.current.value; // Get the selected value
-
+    const role = userTypeRef.current.value; 
     try {
         const response = await axios.post('http://localhost:5000/api/auth/register', { name, email, contact, password, role });
         alert(response.data.message); // Handle success
