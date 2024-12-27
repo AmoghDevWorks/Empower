@@ -5,7 +5,7 @@ const connectDB = require('./config/db');
 const authRoutes = require('./routes/auth');
 const { Server } = require('socket.io');
 const http = require('http');
-
+ const financeRoutes=require('./routes/finance');
 // Load environment variables
 dotenv.config();
 
@@ -81,6 +81,7 @@ io.on('connection', (socket) => {
 
 // Routes
 app.use('/api/auth', authRoutes);
+app.post('/finance',financeRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 5000;
