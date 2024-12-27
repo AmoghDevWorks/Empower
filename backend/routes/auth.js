@@ -2,6 +2,7 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
+const Finance = require('../models/finance');
 
 const router = express.Router();
 
@@ -23,6 +24,10 @@ router.post('/register', async (req, res) => {
 
 
      });
+      
+
+
+
   } catch (err) {
     res.status(500).json({ message: 'Server error' });
   }

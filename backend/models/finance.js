@@ -17,5 +17,6 @@ const financeSchema = new mongoose.Schema({
     },
   ],
 });
+const Finance=mongoose.model('Finance', financeSchema);
 
-module.exports = mongoose.model('Finance', financeSchema);
+module.exports = Finance;
