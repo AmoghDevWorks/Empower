@@ -18,7 +18,7 @@ const Register = () => {
     const weight = weightRef.current.value
     const pregnancyWeek = pregnancyWeekRef.current.value
     //email,bloodgroup, height,weight, pregnancyweek
-
+    
     navigate('/healthcare/pregnancy')
   }
 
