@@ -1,15 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 const FinanceStats = () => {
-  const [email, setEmail] = useState('');
-  const [financeData, setFinanceData] = useState(null);
+  const incomeRef = useRef(null);
+  const expenseRef = useRef(null);
   const [error, setError] = useState(null);
+  const user = useSelector((state) => state.user);
+  const email = user?.email || ""; // Fallback in case user is undefined
+  const [financeData, setFinanceData] = useState(null);
 
   // Fetch finance data
   const fetchFinanceData = async () => {
+    const dataToSend = {
+      email,
+      income: incomeRef.current?.value || "",
+      expense: expenseRef.current?.value || "",
+    };
+
     try {
-      const response = await axios.post('/finance', { email });
+      const response = await axios.post('/finance', dataToSend);
       setFinanceData(response.data.finance);
       setError(null);
     } catch (err) {
@@ -22,6 +32,7 @@ const FinanceStats = () => {
     if (email) {
       fetchFinanceData();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [email]);
 
   // Calculate totals
@@ -29,20 +40,32 @@ const FinanceStats = () => {
     items?.reduce((sum, item) => sum + item.amount, 0) || 0;
 
   return (
-    <div className="p-4 max-w-lg mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Finance Statistics</h1>
-      
+    <div className="text-slate-900 p-4 text-center mx-auto">
+      <h1 className="text-6xl font-bold mb-4">Finance Statistics</h1>
+
       <div className="mb-4">
         <label htmlFor="email" className="block text-lg font-medium mb-2">
-          Enter Email:
+          Enter Income:
         </label>
         <input
-          type="email"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Enter your email"
-          className="border p-2 w-full rounded"
+          type="number"
+          id="income"
+          ref={incomeRef}
+          placeholder="Enter income amount"
+          className="border p-2 w-1/3 rounded"
+        />
+      </div>
+
+      <div className="mb-4">
+        <label htmlFor="expense" className="block text-lg font-medium mb-2">
+          Enter Expense:
+        </label>
+        <input
+          type="number"
+          id="expense"
+          ref={expenseRef}
+          placeholder="Enter expense amount"
+          className="border p-2 w-1/3 rounded"
         />
       </div>
 

@@ -19,7 +19,7 @@ const Finance = () => {
                         <div className="flex-grow">
                         <h2 className="text-gray-900 text-2xl title-font font-medium mb-3">Budget Tool</h2>
                         <p className="leading-relaxed text-base">Plan your finances with ease using our Budget Tool. Set spending limits, monitor expenses, and achieve your financial goals effectively.</p>
-                        <Link className="mt-3 text-indigo-500 inline-flex items-center  ">Learn More
+                        <Link to={'/finance/budgettools'} className="mt-3 text-indigo-500 inline-flex items-center  ">Learn More
                             <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
                             <path d="M5 12h14M12 5l7 7-7 7"></path>
                             </svg>

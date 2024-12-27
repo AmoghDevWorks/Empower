@@ -13,6 +13,8 @@ import Finance from './components/Finance/Finance';
 import SafetySecurity from './components/SafetySecurity/SafetySecurity';
 import SocketIndividual from './components/HealthCare/DoctorCommunication/SocketIndividual';
 import Pregnancy from './components/HealthCare/pregnancy/Pregnancy';
+import Register from './components/HealthCare/pregnancy/Register';
+import FinanceStats from './components/Finance/budgetTool/FinanceStats';
 
 const Structure = () =>{
   return(
@@ -52,7 +54,6 @@ const appRouter = createBrowserRouter([
         path:'/safetyandsecurity',
         element:<SafetySecurity />
       },
-      
       {
         path:'/healthcare/communicate',
         element:<SocketIndividual/>
@@ -60,6 +61,14 @@ const appRouter = createBrowserRouter([
       {
         path:'/healthcare/pregnancy',
         element:<Pregnancy />
+      },
+      {
+        path:'/healthcare/pregnancy/register',
+        element:<Register />
+      },
+      {
+        path:'/finance/budgettools',
+        element:<FinanceStats />
       }
     ]
   }
