@@ -14,8 +14,8 @@ const Navbar = () => {
 
   return (
     <div className="flex items-center justify-between h-20 w-full bg-zinc-100 relative p-2 border-b-2 border-solid border-black">
-        <div className="text-indigo-600 font-bold text-2xl flex items-center gap-2 font-serif">
-            Empower
+        <div className="text-indigo-600 font-bold text-2xl flex items-center gap-2 font-serif font-rubik-vinyl animate-lightning ">
+            Empower Her
         </div>
         <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center text-indigo-700 text-sm font-semibold bg-zinc-50 rounded-full backdrop-blur-sm px-5 py-1 overflow-hidden border border-zinc-700">
             <Link to={'/'} className="hover:text-zinc-100 hover:bg-zinc-800 hover:rounded-full transition duration-700 px-4 py-1.5 rounded-full relative group isolate">
