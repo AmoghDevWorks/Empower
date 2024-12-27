@@ -7,14 +7,14 @@ const router = express.Router();
 
 // Register user
 router.post('/register', async (req, res) => {
-  const {name, email,contact, password } = req.body;
+  const {name, email,contact, password,role } = req.body;
   try {
     const userExists = await User.findOne({ email });
     if (userExists) {
       return res.status(400).json({ message: 'User already exists' });
     }
 
-    const user = new User({ name,email, contact,password });
+    const user = new User({ name,email, contact,password,role});
     await user.save();
 
     res.status(201).json({ message: 'User registered successfully',
@@ -50,7 +50,8 @@ router.post('/login', async (req, res) => {
       id: user._id,
       name: user.name,
       email: user.email,
-      contact: user.contact
+      contact: user.contact,
+      role:user.role,
     };
 
     res.status(200).json({ message: 'Login successful', user: userResponse,token});
