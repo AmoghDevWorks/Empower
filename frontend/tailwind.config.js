@@ -8,6 +8,9 @@ module.exports = {
         'rubik-vinyl': ['"Rubik Vinyl"', 'sans-serif'],
         // Register the custom font
       },
+      animation: {
+        fadeIn: 'fadeIn 1s ease-in-out forwards',
+      },
       keyframes: {
         lightning: {
           '0%, 100%': {
@@ -16,6 +19,11 @@ module.exports = {
           '50%': {
             textShadow: '0 0 10px #6366f1, 0 0 20px #6366f1, 0 0 40px #6366f1, 0 0 60px #6366f1',
           },
+
+        },
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
         },
       },
       animation: {
