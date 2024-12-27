@@ -7,14 +7,17 @@ const router = express.Router();
 router.post('/finance', async (req, res) => {
   try {
     const { email, expenses, income } = req.body;
+    console.log(req.body)
 
     // Validate inputs
     if (!email) {
       return res.status(400).json({ error: 'Email address is required' });
     }
 
-    if (!expenses && !income) {
-      return res.status(400).json({ error: 'At least one of expenses or income is required' });
+    if ((!expenses || !Array.isArray(expenses)) && (!income || !Array.isArray(income))) {
+      return res
+        .status(400)
+        .json({ error: 'At least one of expenses or income must be provided, and they must be arrays' });
     }
 
     // Find finance document by email
@@ -25,32 +28,40 @@ router.post('/finance', async (req, res) => {
       finance = new Finance({ email, expenses: [], income: [] });
     }
 
-    // Add expenses if provided
-    if (expenses) {
-      finance.expenses.push({
-        amount: expenses.amount,
-        description: expenses.description || 'No description provided',
-        date: expenses.date || Date.now(),
+    // Add multiple expenses if provided
+    if (expenses && Array.isArray(expenses)) {
+      expenses.forEach((expense) => {
+        finance.expenses.push({
+          amount: expense.amount || 0,
+          description: expense.description || 'No description provided',
+          date: expense.date || new Date(),
+        });
       });
     }
 
-    // Add income if provided
-    if (income) {
-      finance.income.push({
-        amount: income.amount,
-        description: income.description || 'No description provided',
-        date: income.date || Date.now(),
+    // Add multiple income entries if provided
+    if (income && Array.isArray(income)) {
+      income.forEach((inc) => {
+        finance.income.push({
+          amount: inc.amount || 0,
+          description: inc.description || 'No description provided',
+          date: inc.date || new Date(),
+        });
       });
     }
 
     // Save the updated finance document
     await finance.save();
 
-    res.status(200).json({ message: 'Finance data updated successfully', finance });
+    res.status(200).json({
+      message: 'Finance data updated successfully',
+      finance,
+    });
   } catch (error) {
     console.error('Error updating finance data:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
+
 
 module.exports = router;

@@ -1,22 +1,45 @@
 const mongoose = require('mongoose');
 
 const financeSchema = new mongoose.Schema({
-  email: { type: String, required: true, unique: true },
+  email: { 
+    type: String, 
+    required: true, 
+    unique: true 
+  },
   expenses: [
     {
-      amount: { type: Number, required: true },
-      description: { type: String, default: 'No description provided' },
-      date: { type: Date, default: Date.now },
+      amount: { 
+        type: Number, 
+        required: true 
+      },
+      description: { 
+        type: String, 
+        default: 'No description provided' 
+      },
+      date: { 
+        type: Date, 
+        default: Date.now 
+      },
     },
   ],
   income: [
     {
-      amount: { type: Number, required: true },
-      description: { type: String, default: 'No description provided' },
-      date: { type: Date, default: Date.now },
+      amount: { 
+        type: Number, 
+        required: true 
+      },
+      description: { 
+        type: String, 
+        default: 'No description provided' 
+      },
+      date: { 
+        type: Date, 
+        default: Date.now 
+      },
     },
   ],
 });
-const Finance=mongoose.model('Finance', financeSchema);
+
+const Finance = mongoose.model('Finance', financeSchema);
 
 module.exports = Finance;
