@@ -17,7 +17,7 @@ const App = () => {
               <h2 className="text-gray-900 text-2xl title-font font-medium mb-3">HealthCare</h2>
               <h3 className='font-semibold text-black text-lg'>"Wellness Redefined for Her Future." </h3>
               <p className="leading-relaxed text-base">We strive to revolutionize women's health by providing access to essential resources, preventive care, and holistic wellness programs. Together, we pave the way for healthier and empowered lives.</p>
-              <Link className="mt-3 text-indigo-500 inline-flex items-center">Learn More
+              <Link to={'/healthcare'} className="mt-3 text-indigo-500 inline-flex items-center">Learn More
                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
                   <path d="M5 12h14M12 5l7 7-7 7"></path>
                 </svg>
@@ -32,7 +32,7 @@ const App = () => {
               <h2 className="text-gray-900 title-font font-medium mb-3 text-2xl">Finance</h2>
               <h3 className='font-semibold text-black text-lg'>"Empowering Her Wealth, Securing Her Dreams."  </h3>
               <p className="leading-relaxed text-base">Unlocking financial independence with tools and knowledge, we help women make informed decisions in savings, investments, and entrepreneurship. Our mission is to build lasting financial confidence.</p>
-              <Link className="mt-3 text-indigo-500 inline-flex items-center">Learn More
+              <Link to={'/finance'} className="mt-3 text-indigo-500 inline-flex items-center">Learn More
                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
                   <path d="M5 12h14M12 5l7 7-7 7"></path>
                 </svg>
@@ -47,7 +47,7 @@ const App = () => {
               <h2 className="text-gray-900 text-2xl title-font font-medium mb-3">Safety and Security</h2>
               <h3 className='font-semibold text-black text-lg'>"Safe Today, Stronger Tomorrow."</h3>
               <p className="leading-relaxed text-base">We create secure environments and offer innovative solutions to ensure women feel safe and supported. Empowerment begins with safety, fostering confidence and resilience for a brighter tomorrow.</p>
-              <Link className="mt-3 text-indigo-500 inline-flex items-center">Learn More
+              <Link to={'/safetyandsecurity'} className="mt-3 text-indigo-500 inline-flex items-center">Learn More
                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
                   <path d="M5 12h14M12 5l7 7-7 7"></path>
                 </svg>

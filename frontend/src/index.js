@@ -8,6 +8,9 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import { Provider } from 'react-redux'
 import appStore from './utils/appStore';
+import HealthCare from './components/HealthCare/HealthCare';
+import Finance from './components/Finance/Finance';
+import SafetySecurity from './components/SafetySecurity/SafetySecurity';
 
 const Structure = () =>{
   return(
@@ -35,6 +38,18 @@ const appRouter = createBrowserRouter([
         path:'/signup',
         element:<Signup />
       },
+      {
+        path:'/healthcare',
+        element:<HealthCare />
+      },
+      {
+        path:'/finance',
+        element:<Finance />
+      },
+      {
+        path:'/safetyandsecurity',
+        element:<SafetySecurity />
+      }
     ]
   }
 ])

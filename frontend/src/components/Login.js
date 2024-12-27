@@ -36,11 +36,11 @@ const Login = () => {
         <h1 className='text-center text-5xl font-bold font-serif text-blue-700 mb-4'>Login</h1>
         <div className='w-full flex items-start justify-center gap-3 flex-col my-2'>
             <label htmlFor='email' className='text-xl font-semibold'>Email:</label>
-            <input ref={emailRef} name='email' type='email' className='bg-slate-50 p-2 w-11/12 border-2 border-slate-600 border-solid rounded-md' placeholder='Enter your email'/>
+            <input ref={emailRef} name='email' type='email' className='text-black bg-slate-50 p-2 w-11/12 border-2 border-slate-600 border-solid rounded-md' placeholder='Enter your email'/>
         </div>
         <div className='w-full flex items-start justify-center gap-3 flex-col my-2'>
             <label htmlFor='password' className='text-xl font-semibold'>Password:</label>
-            <input ref={passwordRef} name='password' type='password' className='bg-slate-50 p-2 w-11/12 border-2 border-slate-600 border-solid rounded-md' placeholder='Enter your password'/>
+            <input ref={passwordRef} name='password' type='password' className='text-black bg-slate-50 p-2 w-11/12 border-2 border-slate-600 border-solid rounded-md' placeholder='Enter your password'/>
         </div>
         <button onClick={handleClick} className='py-2 px-6 font-semibold text-lg border-2 border-solid border-black rounded-xl hover:bg-black hover:text-slate-200'>
             Login

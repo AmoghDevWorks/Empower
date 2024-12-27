@@ -34,7 +34,7 @@ const Signup = () => {
             <h1 className='text-5xl font-bold text-center font-serif my-5 underline underline-offset-4'>SignUp</h1>
             <div className='w-full flex items-start justify-center gap-1 flex-col my-2'>
                 <label htmlFor='name' className='text-xl font-semibold'>Name:</label>
-                <input ref={nameRef} name='name' type='text' className='bg-slate-50 p-2 w-11/12 border-2 border-slate-600 border-solid rounded-md' placeholder='Enter your name'/>
+                <input ref={nameRef} name='name' type='text' className='bg-slate-50 text-black p-2 w-11/12 border-2 border-slate-600 border-solid rounded-md' placeholder='Enter your name'/>
             </div>
             <div className='w-full flex items-start justify-center gap-1 flex-col my-2'>
                 <label htmlFor='email' className='text-xl font-semibold'>Email:</label>
@@ -42,11 +42,11 @@ const Signup = () => {
             </div>
             <div className='w-full flex items-start justify-center gap-1 flex-col my-2'>
                 <label htmlFor='contact' className='text-xl font-semibold'>Contact detail:</label>
-                <input ref={contactRef} name='contact' type='text' className='bg-slate-50 p-2 w-11/12 border-2 border-slate-600 border-solid rounded-md' placeholder='Enter your contact details'/>
+                <input ref={contactRef} name='contact' type='text' className='bg-slate-50 text-black p-2 w-11/12 border-2 border-slate-600 border-solid rounded-md' placeholder='Enter your contact details'/>
             </div>
             <div className='w-full flex items-start justify-center gap-1 flex-col my-2'>
                 <label htmlFor='password' className='text-xl font-semibold'>Password:</label>
-                <input ref={passwordRef} name='password' type='text' className='bg-slate-50 p-2 w-11/12 border-2 border-slate-600 border-solid rounded-md' placeholder='Enter your mobile number'/>
+                <input ref={passwordRef} name='password' type='text' className='bg-slate-50 text-black p-2 w-11/12 border-2 border-slate-600 border-solid rounded-md' placeholder='Enter your mobile number'/>
             </div>
             <button onClick={handleClick} className='mt-2 py-2 px-6 font-semibold text-lg border-2 border-solid border-black rounded-xl hover:bg-black hover:text-slate-200'>
                 SignUp
