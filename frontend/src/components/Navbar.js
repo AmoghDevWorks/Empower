@@ -25,21 +25,21 @@ const Navbar = () => {
                 </div>
                 <span className="z-10 relative text-md">Home</span>
             </Link>
-            <Link to={''} className="hover:text-zinc-100 hover:bg-zinc-800 hover:rounded-full transition px-4 py-1.5 duration-700 rounded-full relative group isolate">
+            <Link to={'/healthcare'} className="hover:text-zinc-100 hover:bg-zinc-800 hover:rounded-full transition px-4 py-1.5 duration-700 rounded-full relative group isolate">
                 <div className="absolute -bottom-5 left-1/2 -translate-x-1/2  duration-700 w-8 h-6 blur-[12px] bg-zinc-700 opacity-0 group-hover:opacity-100 transition -z-10">
                 </div>
                 <div className="absolute -top-5 left-1/2 -translate-x-1/2  duration-700 w-8 h-6 blur-[12px] bg-zinc-700 opacity-0 group-hover:opacity-100 transition -z-10">
                 </div>
                 <span className="z-10 relative text-md">HealthCare</span>
             </Link>
-            <Link to={''} className="hover:text-zinc-100 hover:bg-zinc-800 hover:rounded-full transition px-4 py-1.5 duration-700 rounded-full relative group isolate">
+            <Link to={'/finance'} className="hover:text-zinc-100 hover:bg-zinc-800 hover:rounded-full transition px-4 py-1.5 duration-700 rounded-full relative group isolate">
                 <div className="absolute -bottom-5 left-1/2 -translate-x-1/2  duration-700 w-8 h-6 blur-[12px] bg-zinc-700 opacity-0 group-hover:opacity-100 transition -z-10">
                 </div>
                 <div className="absolute -top-5 left-1/2 -translate-x-1/2  duration-700 w-8 h-6 blur-[12px] bg-zinc-700 opacity-0 group-hover:opacity-100 transition -z-10">
                 </div>
                 <span className="z-10 relative text-md">Finance</span>
             </Link>
-            <Link to={''} className="hover:text-zinc-100 hover:bg-zinc-800 hover:rounded-full transition px-4 py-1.5 duration-700 rounded-full relative group isolate">
+            <Link to={'/safetyandsecurity'} className="hover:text-zinc-100 hover:bg-zinc-800 hover:rounded-full transition px-4 py-1.5 duration-700 rounded-full relative group isolate">
                 <div className="absolute -bottom-5 left-1/2 -translate-x-1/2  duration-700 w-8 h-6 blur-[12px] bg-zinc-700 opacity-0 group-hover:opacity-100 transition -z-10">
                 </div>
                 <div className="absolute -top-5 left-1/2 -translate-x-1/2  duration-700 w-8 h-6 blur-[12px] bg-zinc-700 opacity-0 group-hover:opacity-100 transition -z-10">

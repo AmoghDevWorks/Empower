@@ -2,7 +2,11 @@
 module.exports = {
   content: ["./src/**/*.{html,js}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        haverbrooke: ['haverbrooke', 'sans-serif'], // Register the custom font
+      },
+    },
   },
   plugins: [],
 }
