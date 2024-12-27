@@ -12,6 +12,7 @@ import HealthCare from './components/HealthCare/HealthCare';
 import Finance from './components/Finance/Finance';
 import SafetySecurity from './components/SafetySecurity/SafetySecurity';
 import SocketIndividual from './components/HealthCare/DoctorCommunication/SocketIndividual';
+import Pregnancy from './components/HealthCare/pregnancy/Pregnancy';
 
 const Structure = () =>{
   return(
@@ -56,6 +57,10 @@ const appRouter = createBrowserRouter([
         path:'/healthcare/communicate',
         element:<SocketIndividual/>
       },
+      {
+        path:'/healthcare/pregnancy',
+        element:<Pregnancy />
+      }
     ]
   }
 ])
