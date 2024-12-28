@@ -1,6 +1,7 @@
-import React, { useRef } from 'react'
+import React, { useRef,useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 const Register = () => {
 
@@ -10,6 +11,7 @@ const Register = () => {
   const pregnancyWeekRef = useRef(null)
   const user = useSelector((state) => state.user);
   const email = user?.email || "";
+  const [error,setError] = useState(null)
 
   const navigate = useNavigate()
  
@@ -26,10 +28,9 @@ const Register = () => {
        height:height,
        weight:weight,
        pregnancyWeek:pregnancyWeek
-       
-
-
       }); // Adjust the URL for deployment
+
+      console.log(response.data)
        
       setError(null);
     } catch (err) {
@@ -37,6 +38,8 @@ const Register = () => {
     }
     navigate('/healthcare/pregnancy')
   }
+
+  
 
   return (
     <div className='text-indigo-600 bg-slate-100 min-h-[100vh] flex items-center justify-center'>
