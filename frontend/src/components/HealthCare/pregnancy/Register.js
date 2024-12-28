@@ -21,6 +21,12 @@ const Register = () => {
         const weight = weightRef.current.value;
         const pregnancyWeek = pregnancyWeekRef.current.value;
 
+        // Simple validation
+        if (!bloodgroup || !height || !weight || !pregnancyWeek) {
+            setError('All fields are required');
+            return;
+        }
+
         try {
             const response = await axios.post('http://localhost:5000/pregnancy', {
                 email,
@@ -33,6 +39,12 @@ const Register = () => {
             setError(null);
             setSuccess(response.data.message);
 
+            // Clear form after success
+            bloodGrpRef.current.value = '';
+            heightRef.current.value = '';
+            weightRef.current.value = '';
+            pregnancyWeekRef.current.value = '';
+
             // Redirect to the pregnancy dashboard
             navigate('/healthcare/pregnancy');
         } catch (err) {
@@ -41,6 +53,11 @@ const Register = () => {
         }
     };
 
+    // Fetch pregnancy data using POST request with email in the body
+    
+
+    // Fetch data on component mount (for testing)
+     
     return (
         <div className='text-indigo-600 bg-slate-100 min-h-[100vh] flex items-center justify-center'>
             <div className='h-fit w-1/3 bg-gradient-to-br from-gray-100 to-gray-300 p-5 flex flex-col justify-center items-center rounded-lg'>

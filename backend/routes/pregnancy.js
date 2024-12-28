@@ -1,75 +1,62 @@
-//email,bloodgroup, height,weight, pregnancyweek
-
 const express = require('express');
- 
 const Pregnancy = require('../models/pregnancy');
-
 const router = express.Router();
 
-// pregnancy Route
+// pregnancy Route for creating/updating data
 router.post('/pregnancy', async (req, res) => {
     try {
-        const { email, bloodgroup,height,weight, pregnancyWeek } = req.body;
-      
-         
+        const { email, bloodgroup, height, weight, pregnancyWeek } = req.body;
+
         // Validate inputs
-        if (!email) {
-          return res.status(400).json({ error: 'Email address is required' });
+        if (!email || !bloodgroup || !height || !weight || !pregnancyWeek) {
+            return res.status(400).json({ error: 'All fields are required' });
         }
-    
-         
-    
-        // Find prgnancy document by email,bloodgroup,height,weight,prenancy week
-        let  pregnancy = await Pregnancy.create({ email:email,
-            bloodgroup:bloodgroup,
-            height:height,
-            weight:weight, 
-            pregnancyWeek:pregnancyWeek
 
-         });
-         console.log(pregnancyWeek);
-         console.log(bloodgroup);
-
-
-         if(!pregnancy){
-            res.json({
-                meassge:"an eror ocuured in pushing prgnancy data"
-            })
-         }
-    
-        // Save the updated finance document
-     
-    console.log('hi')
-        res.status(200).json({
-          message: 'pregnancy data updated successfully',
-          pregnancy,
+        // Create pregnancy document
+        const pregnancy = await Pregnancy.create({
+            email,
+            bloodgroup,
+            height,
+            weight,
+            pregnancyWeek
         });
-      } catch (error) {
+
+        if (!pregnancy) {
+            return res.status(500).json({ error: 'Error creating pregnancy data' });
+        }
+
+        res.status(200).json({
+            message: 'Pregnancy data updated successfully',
+            pregnancy,
+        });
+    } catch (error) {
         console.error('Error updating pregnancy data:', error);
         res.status(500).json({ error: 'Internal server error' });
-      }
- 
+    }
 });
 
+// Route to fetch pregnancy data by email (GET request with query parameters)
+router.get('/getpregnancy', async (req, res) => {
+    const { email } = req.query;  // Use req.query to get query parameters
 
-router.get('/getpregnancy', async(req,res)=>{
- 
-    const email=req.body;
-    const pregnancy=await Pregnancy.findOne({email});
-    res.status(200).json({
-        bloodgroup:pregnancy.bloodgroup,
-        height:pregnancy.height,
-        weight:pregnancy.weight, 
-        pregnancyWeek:pregnancy.pregnancyWeek
-    
-    })
-    
+    if (!email) {
+        return res.status(400).json({ error: 'Email is required' });
+    }
 
+    try {
+        const pregnancy = await Pregnancy.findOne({ email });
 
+        if (!pregnancy) {
+            return res.status(404).json({ error: 'Pregnancy data not found' });
+        }
 
-
-})
-
-
+        res.status(200).json({
+            pregnancy
+        });
+    } catch (error) {
+        console.error('Error fetching pregnancy data:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
 
 module.exports = router;

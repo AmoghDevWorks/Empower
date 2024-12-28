@@ -86,7 +86,8 @@ app.use('/api/auth', authRoutes);
 app.post('/finance',financeRoutes);
 app.post('/generate',chatbotRoutes);
 app.post('/pregnancy',pregnancyRoutes);
-app.get('/getfinance',financeRoutes)
+app.get('/getfinance',financeRoutes);
+app.get('/getpregnancy',pregnancyRoutes)
 // Start the server
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {
