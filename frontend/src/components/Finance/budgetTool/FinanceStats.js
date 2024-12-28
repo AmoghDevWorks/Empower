@@ -178,9 +178,9 @@ const FinanceStats = () => {
   useEffect(() => {
     if (financeData) {
       // Wait for financeData to be set, then trigger chatbot data fetching
-      setTimeout(() => {
+      // setTimeout(() => {
         getchatbotdata();
-      }, 10000); // Delay of 10 seconds
+      // }, 10000); // Delay of 10 seconds
     }
   }, [financeData]); // Only run when financeData changes
 
@@ -284,10 +284,10 @@ const FinanceStats = () => {
           </div>
 
           {/* Chatbot advice */}
-          <div className="mt-24 border-t-2 border-slate-400 border-solid">
+          {financeData && <div className="mt-24 border-t-2 border-slate-400 border-solid">
             <h3 className="text-4xl font-semibold underline underline-offset-1 my-5">Financial Advice:</h3>
             <p className="text-lg font-serif text-justify px-10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{chatdata}</p>
-          </div>
+          </div>}
 
           {/* Separate Income Table */}
           <div className="my-8 border-t-2 border-slate-400 border-solid pt-5">
