@@ -10,8 +10,8 @@ const router = express.Router();
 router.post('/pregnancy', async (req, res) => {
     try {
         const { email, bloodgroup,height,weight, pregnancyWeek } = req.body;
-        console.log(req.body)
-    
+      
+         
         // Validate inputs
         if (!email) {
           return res.status(400).json({ error: 'Email address is required' });
@@ -27,6 +27,9 @@ router.post('/pregnancy', async (req, res) => {
             pregnancyWeek:pregnancyWeek
 
          });
+         console.log(pregnancyWeek);
+         console.log(bloodgroup);
+
 
          if(!pregnancy){
             res.json({
@@ -35,8 +38,8 @@ router.post('/pregnancy', async (req, res) => {
          }
     
         // Save the updated finance document
-        await Pregnancy.save();
-    
+     
+    console.log('hi')
         res.status(200).json({
           message: 'pregnancy data updated successfully',
           pregnancy,

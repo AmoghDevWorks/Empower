@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const pregnancySchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
-   bloodGroup:{
+   bloodgroup:{
     type:String
 },
 height:{
@@ -12,7 +12,7 @@ height:{
 weight:{
     type:Number,
 },
- pregnancyweek:{
+ pregnancyWeek:{
     type:Number,
  }
 
