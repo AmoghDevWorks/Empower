@@ -16,9 +16,9 @@ const Pregnancy = () => {
     try {
       // Use GET method with query parameter email
       const response = await axios.get(`http://localhost:5000/getpregnancy?email=${email}`);
-      console.log(response.data);
       setPregData(response.data.pregnancy);  // Store fetched data in state
       const data = response.data.pregnancy
+      console.log(data)
       dispatch(AddPregnancyData({email:email,bloodgroup:data.bloodgroup,height:data.height,weight:data.weight,pWeek:data.pregnancyWeek}))
     } catch (err) {
       console.error("Error fetching pregnancy data:", err);
@@ -35,7 +35,7 @@ const Pregnancy = () => {
   return (
     <div className='p-5 text-black'>
       {/* Register the pregnancy */}
-      <div>
+      <div className=' border-b-2 border-solid border-slate-400'>
         <h1 className='text-4xl text-center text-slate-800 font-semibold font-haverbrooke'>
           Join Our Community for Expert Pregnancy Assistance
         </h1>
@@ -59,12 +59,12 @@ const Pregnancy = () => {
 
       {/* Display fetched pregnancy data */}
       {pregData && (
-        <div>
-          <h2 className='text-2xl font-semibold'>Your Pregnancy Data</h2>
-          <p><strong>Blood Group:</strong> {pregData.bloodgroup}</p>
-          <p><strong>Height:</strong> {pregData.height} cm</p>
-          <p><strong>Weight:</strong> {pregData.weight} kg</p>
-          <p><strong>Pregnancy Week:</strong> {pregData.pregnancyWeek} weeks</p>
+        <div className='py-2 px-16 text-center'>
+          <h2 className='text-4xl font-semibold font-haverbrooke my-3'>Your Pregnancy Data</h2>
+          <p className='text-left font-serif capitalize'><strong>Blood Group:</strong> {pregData.bloodgroup}</p>
+          <p className='text-left font-serif '><strong>Height:</strong> {pregData.height} cm</p>
+          <p className='text-left font-serif '><strong>Weight:</strong> {pregData.weight} kg</p>
+          <p className='text-left font-serif '><strong>Pregnancy Week:</strong> {pregData.pregnancyWeek} weeks</p>
         </div>
       )}
     </div>
