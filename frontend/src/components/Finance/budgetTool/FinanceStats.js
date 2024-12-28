@@ -270,9 +270,28 @@ const FinanceStats = () => {
             </p>
           </div>
 
+
+          {/* Bar Chart (Smaller) */}
+          <div className="w-1/2 h-64 mx-auto mt-8 border-t-2 border-slate-400 border-solid">
+            <h2 className='text-4xl font-semibold underline underline-offset-1 my-5'>Graph Analysis</h2>
+            <Bar className='mx-28' data={chartData} options={chartOptions} />
+          </div>
+
+          {/* Profit or Loss Pie Chart (Smaller) */}
+          <div className="w-1/2 h-64 mx-auto mt-20 border-t-2 border-slate-400 border-solid">
+            <h2 className='text-4xl font-semibold underline underline-offset-1 my-5'>Profit vs loss</h2>
+            <Pie className='mx-60' data={profitLossData} options={chartOptions} />
+          </div>
+
+          {/* Chatbot advice */}
+          <div className="mt-24 border-t-2 border-slate-400 border-solid">
+            <h3 className="text-4xl font-semibold underline underline-offset-1 my-5">Financial Advice:</h3>
+            <p className="text-lg font-serif text-justify px-10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{chatdata}</p>
+          </div>
+
           {/* Separate Income Table */}
-          <div className="my-8">
-            <h3 className="text-3xl font-semibold">Income Details</h3>
+          <div className="my-8 border-t-2 border-slate-400 border-solid pt-5">
+            <h3 className="text-3xl font-semibold underline underline-offset-2">Income Details</h3>
             <table className="table-auto border-collapse w-full mt-4">
               <thead>
                 <tr>
@@ -294,8 +313,8 @@ const FinanceStats = () => {
           </div>
 
           {/* Separate Expense Table */}
-          <div className="my-8">
-            <h3 className="text-3xl font-semibold">Expense Details</h3>
+          <div className="my-8 border-t-2 border-slate-400 border-solid pt-5">
+            <h3 className="text-3xl font-semibold underline underline-offset-2">Expense Details</h3>
             <table className="table-auto border-collapse w-full mt-4">
               <thead>
                 <tr>
@@ -314,22 +333,6 @@ const FinanceStats = () => {
                 ))}
               </tbody>
             </table>
-          </div>
-
-          {/* Bar Chart (Smaller) */}
-          <div className="w-1/2 h-64 mx-auto mt-8">
-            <Bar data={chartData} options={chartOptions} />
-          </div>
-
-          {/* Profit or Loss Pie Chart (Smaller) */}
-          <div className="w-1/2 h-64 mx-auto mt-8">
-            <Pie data={profitLossData} options={chartOptions} />
-          </div>
-
-          {/* Chatbot advice */}
-          <div className="mt-8">
-            <h3 className="text-3xl">Financial Advice:</h3>
-            <p className="text-lg">{chatdata}</p>
           </div>
         </div>
       )}
