@@ -88,7 +88,9 @@ app.post('/generate',chatbotRoutes);
 app.post('/pregnancy',pregnancyRoutes);
 app.get('/getfinance',financeRoutes);
 app.get('/getdonar',financeRoutes);
-app.get('/getpregnancy',pregnancyRoutes)
+app.get('/getpregnancy',pregnancyRoutes);
+app.post('/updatepregnancy',pregnancyRoutes);
+
 // Start the server
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {

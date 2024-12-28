@@ -73,4 +73,48 @@ router.get('/getpregnancy', async (req, res) => {
     }
 });
 
+
+// Route to update pregnancy data (create a new record in the hnw array)
+router.post('/updatepregnancy', async (req, res) => {
+    try {
+        const { email, pregnancyWeek, height, weight } = req.body;
+        console.log(req.body);  // Logs the incoming data for debugging
+
+        // Validate inputs
+        if (!email || !pregnancyWeek || !height || !weight) {
+            return res.status(400).json({ error: 'Email, pregnancyWeek, height, and weight are required' });
+        }
+
+        // Find the pregnancy record by email
+        let pregnancy = await Pregnancy.findOne({ email });
+
+        if (!pregnancy) {
+            return res.status(404).json({ error: 'Pregnancy data not found' });
+        }
+
+        // Create a new record for hnw (height, weight, and pregnancyWeek)
+        const newHnwRecord = {
+            height,
+            weight,
+            pregnancyWeek,
+        };
+
+        // Push the new record to the hnw array
+        pregnancy.hnw.push(newHnwRecord);
+
+        // Save the updated pregnancy document
+        await pregnancy.save();
+
+        res.status(200).json({
+            message: 'Pregnancy data updated successfully',
+            pregnancy
+        });
+    } catch (error) {
+        console.error('Error updating pregnancy data:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+
+
 module.exports = router;
