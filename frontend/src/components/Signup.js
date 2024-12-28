@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 import {Link, useNavigate} from 'react-router-dom'
 import axios from 'axios'
+import { Bounce, ToastContainer, toast } from 'react-toastify';
 
 const Signup = () => {
 
@@ -20,16 +21,40 @@ const Signup = () => {
     const role = userTypeRef.current.value; 
     try {
         const response = await axios.post('http://localhost:5000/api/auth/register', { name, email, contact, password, role });
-        alert(response.data.message); // Handle success
-        navigate('/login');
+        toast.success('SignUp successfull', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        }); // Handle success
+          setTimeout(()=>{
+            navigate('/login');
+          },5000)
     } catch (error) {
-        alert(error.response.data.message); // Handle error
+      console.log(error)
+      toast.error('Unable to Login', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      }); // Handle error
     }
   };
 
 
   return (
     <div className='text-indigo-600 bg-slate-100 min-h-[100vh] flex items-center justify-center'>
+      <ToastContainer />
       <div className='h-fit w-1/3 bg-gradient-to-br from-gray-100 to-gray-300 p-5 flex flex-col justify-center items-center rounded-lg'>
           <h1 className='text-5xl font-bold text-center font-serif my-5 underline underline-offset-4'>SignUp</h1>
           <div className='w-full flex items-start justify-center gap-1 flex-col my-2'>

@@ -3,8 +3,12 @@ import {Link} from 'react-router-dom'
 import moneybag from '../images/finance.gif'
 import medicine from '../images/medicine.gif'
 import shield from '../images/shield.gif'
+import { useSelector } from 'react-redux'
 
 const App = () => {
+
+  const user = useSelector((state)=>state.user)
+
   return (
     <section className="text-gray-600 body-font">
       <div className="container px-5 py-32 mx-auto">
@@ -55,11 +59,11 @@ const App = () => {
             </div>
           </div>
         </div>
-        <div className='flex items-center justify-center my-6'>
+        {!user && <div className='flex items-center justify-center my-6'>
           <Link to={'/login'} class="px-6 py-2.5 text-white text-lg font-bold uppercase tracking-widest rounded-lg bg-indigo-500 shadow-xl transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500">
               Login
           </Link>
-        </div>
+        </div>}
         
       </div>
     </section>

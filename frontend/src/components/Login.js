@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addUser } from '../utils/UserSlice';
+import { Bounce, ToastContainer, toast } from 'react-toastify';
 
 const Login = () => {
      
@@ -24,14 +25,40 @@ const Login = () => {
       const user = response.data.user
       // Handle success (You can store JWT in localStorage)
       dispatch(addUser({uid:user.id,Name:user.name,email:email,contact:user.contact,role:user.role}))
-      navigate('/')
+      toast.success('SignUp successfull', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+      setTimeout(()=>{
+        
+        navigate('/')
+      },5000)
     } catch (error) {
-      alert(error.response.data.message); // Handle error
+      console.log(error)
+      toast.error('Unable to login', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      }); // Handle error
     }
   }
 
   return (
     <div className='text-indigo-600 min-h-screen w-[99vw] flex pt-24 items-start justify-center bg-slate-100'>
+    <ToastContainer />
     <div className='h-fit w-1/3 bg-gradient-to-br from-gray-100 to-gray-300 p-8 flex items-center justify-center flex-col gap-6 rounded-lg'>
         <h1 className='text-center text-5xl font-bold font-serif text-blue-700 mb-4'>Login</h1>
         <div className='w-full flex items-start justify-center gap-3 flex-col my-2'>
