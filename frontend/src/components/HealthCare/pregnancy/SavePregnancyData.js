@@ -1,12 +1,14 @@
 import React, { useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const SavePregnancyData = () => {
   const heightRef = useRef(null);
   const weightRef = useRef(null);
   const pregWeekRef = useRef(null);
   const email = useSelector((state) => state.user.email);
+  const navigate = useNavigate()
 
   // State to manage loading, success, and error messages
   const [loading, setLoading] = useState(false);
@@ -44,6 +46,7 @@ const SavePregnancyData = () => {
       setLoading(false);
       setMessage(response.data.message || 'Pregnancy data added successfully');
       setMessageType('success');
+      navigate('/healthcare/pregnancy')
     } catch (error) {
       // Handle error response
       setLoading(false);

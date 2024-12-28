@@ -9,6 +9,7 @@ const Pregnancy = () => {
   const pregRedux = useSelector((state)=>state.pregnancy)
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const user = useSelector((state)=>state.user)
 
   const [pregData, setPregData] = useState(null); // State to store pregnancy data
 
@@ -65,14 +66,45 @@ const Pregnancy = () => {
 
       {/* Display fetched pregnancy data */}
       {pregData && (
-        <div className='py-2 px-16 text-center'>
-          <h2 className='text-4xl font-semibold font-haverbrooke my-3'>Your Pregnancy Data</h2>
-          <p className='text-left font-serif capitalize'><strong>Blood Group:</strong> {pregData.bloodgroup}</p>
-          <p className='text-left font-serif '><strong>Height:</strong> {pregData.height} cm</p>
-          <p className='text-left font-serif '><strong>Weight:</strong> {pregData.weight} kg</p>
-          <p className='text-left font-serif '><strong>Pregnancy Week:</strong> {pregData.pregnancyWeek} weeks</p>
-        </div>
-      )}
+  <div className="py-2 px-32 text-center">
+    {/* Displaying User Info */}
+    <h2 className="text-4xl font-semibold font-haverbrooke my-3">Your Pregnancy Data</h2>
+    
+    <p className="text-left font-serif capitalize">
+      <strong>Name:</strong> {user.Name}
+    </p>
+    <p className="text-left font-serif capitalize">
+      <strong>Blood Group:</strong> {pregData.bloodgroup}
+    </p>
+    <p className="text-left font-serif">
+      <strong>Email:</strong> {pregData.email}
+    </p>
+    <p className="text-left font-sans">
+      <strong className='font-serif'>Contact Number:</strong> {user.contact}
+    </p>
+
+    {/* Table displaying pregnancy details */}
+    <table className="min-w-full table-auto mt-6 border-collapse">
+      <thead>
+        <tr>
+          <th className="px-4 py-2 border border-gray-300 font-bold font-haverbrooke text-center">Pregnancy Week</th>
+          <th className="px-4 py-2 border border-gray-300 font-bold font-haverbrooke text-center">Height (cm)</th>
+          <th className="px-4 py-2 border border-gray-300 font-bold font-haverbrooke text-center">Weight (kg)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {pregData.hnw.map((item, index) => (
+          <tr key={item._id}>
+            <td className="px-4 py-2 border border-gray-300">{item.pregnancyWeek} weeks</td>
+            <td className="px-4 py-2 border border-gray-300">{item.height} cm</td>
+            <td className="px-4 py-2 border border-gray-300">{item.weight} kg</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  )}
+
       {pregRedux && <button onClick={handleAddData} className='p-2 absolute right-5 top-4 border-2 border-solid border-black rounded-md font-semibold'>Add Data</button>}
     </div>
   );
