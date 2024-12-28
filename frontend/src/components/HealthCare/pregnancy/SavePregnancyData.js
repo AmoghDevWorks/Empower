@@ -6,7 +6,7 @@ const SavePregnancyData = () => {
   const heightRef = useRef(null)
   const weightRef = useRef(null)
   const pregWeekRef = useRef(null)
-  const email = useSelector((state) => state.action.email)
+  const email = useSelector((state) => state.user.email)
 
   const handleClick = () =>{
         const height = heightRef.current.value
@@ -32,7 +32,7 @@ const SavePregnancyData = () => {
             <input ref={pregWeekRef} name='password' type='password' className='text-black bg-slate-50 p-2 w-11/12 border-2 border-slate-600 border-solid rounded-md' placeholder='Enter your password'/>
         </div>
         <button onClick={handleClick} className='py-2 px-6 font-semibold text-lg border-2 border-solid border-black rounded-xl hover:bg-black hover:text-slate-200'>
-            Login
+            Add data
         </button>
       </div>
     </div>
