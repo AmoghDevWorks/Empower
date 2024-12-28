@@ -94,6 +94,10 @@ const appRouter = createBrowserRouter([
       {
         path:'/healthcare/pregnancy/addData',
         element:<SavePregnancyData />
+      },
+      {
+        path:'/healthcare/periodtracker',
+        element:<PeriodTracker />
       }
     ]
   }
