@@ -1,9 +1,12 @@
 import React, { useRef,useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { AddPregnancyData } from '../../../utils/PregnancySlice'
 
 const Register = () => {
+
+  const dispatch = useDispatch();
 
   const bloodGrpRef = useRef(null)
   const heightRef = useRef(null)
@@ -31,6 +34,7 @@ const Register = () => {
       }); // Adjust the URL for deployment
 
       console.log(response.data)
+      dispatch(AddPregnancyData())
        
       setError(null);
     } catch (err) {

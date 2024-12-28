@@ -39,7 +39,7 @@ const Login = () => {
       setTimeout(()=>{
         
         navigate('/')
-      },5000)
+      },3000)
     } catch (error) {
       console.log(error)
       toast.error('Unable to login', {

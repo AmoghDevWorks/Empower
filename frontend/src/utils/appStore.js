@@ -1,10 +1,12 @@
 import {configureStore} from "@reduxjs/toolkit"
 import UserReducer from './UserSlice'
+import PregnancySlice from './PregnancySlice'
 
 const appStore = configureStore(
     {
         reducer:{
-            user:UserReducer
+            user:UserReducer,
+            pregnancy:PregnancySlice
         }
     }
 )
