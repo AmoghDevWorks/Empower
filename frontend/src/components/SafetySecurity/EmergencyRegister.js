@@ -6,8 +6,8 @@ const EmergencyRegister = () => {
   const email = useSelector((state)=>state.user.email)
   const contactNumber = useRef(null)
 
-  const handleClick = () =>{
-    
+  const handleClick = (e) =>{
+    e.preventDefault()
     const number = contactNumber.current.value
   }
 
