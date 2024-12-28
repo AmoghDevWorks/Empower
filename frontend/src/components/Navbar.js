@@ -17,7 +17,7 @@ const Navbar = () => {
         <div className="text-indigo-600 font-bold text-2xl flex items-center gap-2 font-haverbrooke">
             Empower Her
         </div>
-        <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center text-indigo-700 text-sm font-semibold bg-zinc-50 rounded-full backdrop-blur-sm px-5 py-1 overflow-hidden border border-zinc-700">
+        {user && <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center text-indigo-700 text-sm font-semibold bg-zinc-50 rounded-full backdrop-blur-sm px-5 py-1 overflow-hidden border border-zinc-700">
             <Link to={'/'} className="hover:text-zinc-100 hover:bg-zinc-800 hover:rounded-full transition duration-700 px-4 py-1.5 rounded-full relative group isolate">
                 <div className="absolute -bottom-5 left-1/2 -translate-x-1/2  duration-700 w-8 h-6 blur-[12px] bg-zinc-700 opacity-0 group-hover:opacity-100 transition -z-10">
                 </div>
@@ -46,7 +46,7 @@ const Navbar = () => {
                 </div>
                 <span className="z-10 relative text-md">Safety and Security</span>
             </Link>
-        </div>
+        </div>}
         {!user && <div className="flex items-center justify-center gap-3">
             <Link to={'/login'} className="text-indigo-700 font-medium hover:text-zinc-800 transition">Log In</Link>
             <Link to={'/signup'} className="text-indigo-700 rounded-full px-5 py-1.5 bg-zinc-50 font-medium flex items-center transition border border-zinc-700 relative overflow-hidden group">
