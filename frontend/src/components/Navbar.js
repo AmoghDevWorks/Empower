@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { removeUser } from '../utils/UserSlice'
 
@@ -7,9 +7,11 @@ const Navbar = () => {
 
   const user = useSelector((state)=>state.user)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const handleLogout = () =>{
     dispatch(removeUser())
+    navigate('/')
   }
 
   return (
