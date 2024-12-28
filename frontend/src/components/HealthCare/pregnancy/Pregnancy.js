@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { AddPregnancyData } from '../../../utils/PregnancySlice';
@@ -8,6 +8,7 @@ const Pregnancy = () => {
   const email = useSelector((state) => state.user.email); // Get email from Redux state
   const pregRedux = useSelector((state)=>state.pregnancy)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const [pregData, setPregData] = useState(null); // State to store pregnancy data
 
@@ -25,6 +26,11 @@ const Pregnancy = () => {
     }
   };
 
+  const handleAddData = (e) =>{
+    e.preventDefault()
+    navigate('/healthcare/pregnancy/addData')
+  }
+
   // Fetch data when the email is available
   useEffect(() => {
     if (email) {
@@ -33,7 +39,7 @@ const Pregnancy = () => {
   }, [email]); // Depend on email to re-run when it changes
 
   return (
-    <div className='p-5 text-black'>
+    <div className='p-5 text-black relative'>
       {/* Register the pregnancy */}
       <div className=' border-b-2 border-solid border-slate-400'>
         <h1 className='text-4xl text-center text-slate-800 font-semibold font-haverbrooke'>
@@ -67,6 +73,7 @@ const Pregnancy = () => {
           <p className='text-left font-serif '><strong>Pregnancy Week:</strong> {pregData.pregnancyWeek} weeks</p>
         </div>
       )}
+      <button onClick={handleAddData} className='p-2 absolute right-5 top-4 border-2 border-solid border-black rounded-md font-semibold'>Add Data</button>
     </div>
   );
 };
