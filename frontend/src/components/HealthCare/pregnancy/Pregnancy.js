@@ -6,12 +6,13 @@ import { AddPregnancyData } from '../../../utils/PregnancySlice';
 
 const Pregnancy = () => {
   const email = useSelector((state) => state.user.email); // Get email from Redux state
-  const pregRedux = useSelector((state)=>state.pregnancy)
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const user = useSelector((state)=>state.user)
+  const pregRedux = useSelector((state) => state.pregnancy);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.user);
 
   const [pregData, setPregData] = useState(null); // State to store pregnancy data
+  const [doctorAdvice, setDoctorAdvice] = useState(''); // State to store AI-generated advice
 
   // Fetch pregnancy data from the backend
   const fetchData = async () => {
@@ -19,18 +20,36 @@ const Pregnancy = () => {
       // Use GET method with query parameter email
       const response = await axios.get(`http://localhost:5000/getpregnancy?email=${email}`);
       setPregData(response.data.pregnancy);  // Store fetched data in state
-      const data = response.data.pregnancy
-      console.log(data)
-      dispatch(AddPregnancyData({email:email,bloodgroup:data.bloodgroup,height:data.height,weight:data.weight,pWeek:data.pregnancyWeek}))
+      const data = response.data.pregnancy;
+      console.log(data);
+
+      // Dispatch to Redux
+      dispatch(AddPregnancyData({
+        email: email,
+        bloodgroup: data.bloodgroup,
+        height: data.height,
+        weight: data.weight,
+        pWeek: data.pregnancyWeek
+      }));
+
+      // Step 2: Generate doctor’s advice after fetching pregnancy data
+      const prompt = `Generate health advice for a pregnant woman with the following details: 
+        Height: ${data.height} cm,
+        Weight: ${data.weight} kg,
+        Pregnancy Week: ${data.pregnancyWeek} weeks.`;
+
+      const aiResponse = await axios.post('http://localhost:5000/generate', { prompt });
+      setDoctorAdvice(aiResponse.data.text || 'No content generated');
+
     } catch (err) {
       console.error("Error fetching pregnancy data:", err);
     }
   };
 
-  const handleAddData = (e) =>{
-    e.preventDefault()
-    navigate('/healthcare/pregnancy/addData')
-  }
+  const handleAddData = (e) => {
+    e.preventDefault();
+    navigate('/healthcare/pregnancy/addData');
+  };
 
   // Fetch data when the email is available
   useEffect(() => {
@@ -66,44 +85,52 @@ const Pregnancy = () => {
 
       {/* Display fetched pregnancy data */}
       {pregData && (
-  <div className="py-2 px-32 text-center">
-    {/* Displaying User Info */}
-    <h2 className="text-4xl font-semibold font-haverbrooke my-3">Your Pregnancy Data</h2>
-    
-    <p className="text-left font-serif capitalize">
-      <strong>Name:</strong> {user.Name}
-    </p>
-    <p className="text-left font-serif capitalize">
-      <strong>Blood Group:</strong> {pregData.bloodgroup}
-    </p>
-    <p className="text-left font-serif">
-      <strong>Email:</strong> {pregData.email}
-    </p>
-    <p className="text-left font-sans">
-      <strong className='font-serif'>Contact Number:</strong> {user.contact}
-    </p>
+        <div className="py-2 px-32 text-center">
+          {/* Displaying User Info */}
+          <h2 className="text-4xl font-semibold font-haverbrooke my-3">Your Pregnancy Data</h2>
+          
+          <p className="text-left font-serif capitalize">
+            <strong>Name:</strong> {user.Name}
+          </p>
+          <p className="text-left font-serif capitalize">
+            <strong>Blood Group:</strong> {pregData.bloodgroup}
+          </p>
+          <p className="text-left font-serif">
+            <strong>Email:</strong> {pregData.email}
+          </p>
+          <p className="text-left font-sans">
+            <strong className='font-serif'>Contact Number:</strong> {user.contact}
+          </p>
 
-    {/* Table displaying pregnancy details */}
-    <table className="min-w-full table-auto mt-6 border-collapse">
-      <thead>
-        <tr>
-          <th className="px-4 py-2 border border-gray-300 font-bold font-haverbrooke text-center">Pregnancy Week</th>
-          <th className="px-4 py-2 border border-gray-300 font-bold font-haverbrooke text-center">Height (cm)</th>
-          <th className="px-4 py-2 border border-gray-300 font-bold font-haverbrooke text-center">Weight (kg)</th>
-        </tr>
-      </thead>
-      <tbody>
-        {pregData.hnw.map((item, index) => (
-          <tr key={item._id}>
-            <td className="px-4 py-2 border border-gray-300">{item.pregnancyWeek} weeks</td>
-            <td className="px-4 py-2 border border-gray-300">{item.height} cm</td>
-            <td className="px-4 py-2 border border-gray-300">{item.weight} kg</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
-  )}
+          {/* Table displaying pregnancy details */}
+          <table className="min-w-full table-auto mt-6 border-collapse">
+            <thead>
+              <tr>
+                <th className="px-4 py-2 border border-gray-300 font-bold font-haverbrooke text-center">Pregnancy Week</th>
+                <th className="px-4 py-2 border border-gray-300 font-bold font-haverbrooke text-center">Height (cm)</th>
+                <th className="px-4 py-2 border border-gray-300 font-bold font-haverbrooke text-center">Weight (kg)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {pregData.hnw.map((item, index) => (
+                <tr key={item._id}>
+                  <td className="px-4 py-2 border border-gray-300">{item.pregnancyWeek} weeks</td>
+                  <td className="px-4 py-2 border border-gray-300">{item.height} cm</td>
+                  <td className="px-4 py-2 border border-gray-300">{item.weight} kg</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+
+      {/* Display the generated doctor’s advice */}
+      {doctorAdvice && (
+        <div className="py-6 px-32 text-center mt-6 border-t-2 border-slate-400">
+          <h3 className="text-3xl font-semibold">Doctor's Advice</h3>
+          <p className="mt-4 text-lg">{doctorAdvice}</p>
+        </div>
+      )}
 
       {pregRedux && <button onClick={handleAddData} className='p-2 absolute right-5 top-4 border-2 border-solid border-black rounded-md font-semibold'>Add Data</button>}
     </div>

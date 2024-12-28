@@ -8,13 +8,12 @@ const SavePregnancyData = () => {
   const weightRef = useRef(null);
   const pregWeekRef = useRef(null);
   const email = useSelector((state) => state.user.email);
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   // State to manage loading, success, and error messages
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const [messageType, setMessageType] = useState('');
-  const [generatedContent, setGeneratedContent] = useState('');  // State for AI-generated content
 
   // Handle form submission
   const handleClick = async () => {
@@ -40,27 +39,14 @@ const SavePregnancyData = () => {
       setLoading(true);  // Start loading
       setMessage('');    // Reset the message
 
-      // Step 1: Save pregnancy data to the backend
+      // Make POST request to backend to save pregnancy data
       const response = await axios.post('http://localhost:5000/updatepregnancy', data);
 
-      // Handle success response for saving pregnancy data
+      // Handle success response
       setLoading(false);
       setMessage(response.data.message || 'Pregnancy data added successfully');
       setMessageType('success');
-
-      // Step 2: Create health advice prompt dynamically
-      const prompt = `Generate health advice for a pregnant woman with the following details: 
-        Height: ${height} cm,
-        Weight: ${weight} kg,
-        Pregnancy Week: ${pregWeek} weeks.`;
-
-      // Step 3: Generate health advice using AI with the pregnancy data
-      const aiResponse = await axios.post('http://localhost:5000/generate', { prompt });
-
-      // Set the generated content from the AI response
-      setGeneratedContent(aiResponse.data.text || 'No content generated');
-
-      navigate('/healthcare/pregnancy');  // Optionally redirect after saving
+      navigate('/healthcare/pregnancy')
     } catch (error) {
       // Handle error response
       setLoading(false);
@@ -114,14 +100,6 @@ const SavePregnancyData = () => {
         {message && (
           <div className={`mt-4 text-xl font-semibold ${messageType === 'error' ? 'text-red-500' : 'text-green-500'}`}>
             {message}
-          </div>
-        )}
-
-        {/* AI-generated content */}
-        {generatedContent && (
-          <div className='mt-6'>
-            <h2 className='text-xl font-semibold'>Doctor's Advice:</h2>
-            <p className='text-lg'>{generatedContent}</p>
           </div>
         )}
 
