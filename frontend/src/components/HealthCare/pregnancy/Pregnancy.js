@@ -73,7 +73,7 @@ const Pregnancy = () => {
           <p className='text-left font-serif '><strong>Pregnancy Week:</strong> {pregData.pregnancyWeek} weeks</p>
         </div>
       )}
-      <button onClick={handleAddData} className='p-2 absolute right-5 top-4 border-2 border-solid border-black rounded-md font-semibold'>Add Data</button>
+      {pregRedux && <button onClick={handleAddData} className='p-2 absolute right-5 top-4 border-2 border-solid border-black rounded-md font-semibold'>Add Data</button>}
     </div>
   );
 };

@@ -21,15 +21,15 @@ const SavePregnancyData = () => {
         <h1 className='text-center text-5xl font-bold font-serif text-blue-700 mb-4'>Add Details</h1>
         <div className='w-full flex items-start justify-center gap-3 flex-col my-2'>
             <label htmlFor='email' className='text-xl font-semibold'>Height:</label>
-            <input ref={heightRef} name='email' type='email' className='text-black bg-slate-50 p-2 w-11/12 border-2 border-slate-600 border-solid rounded-md' placeholder='Enter your email'/>
+            <input ref={heightRef} name='email' type='email' className='text-black bg-slate-50 p-2 w-11/12 border-2 border-slate-600 border-solid rounded-md' placeholder='Enter your Height'/>
         </div>
         <div className='w-full flex items-start justify-center gap-3 flex-col my-2'>
             <label htmlFor='password' className='text-xl font-semibold'>Weight:</label>
-            <input ref={weightRef} name='password' type='password' className='text-black bg-slate-50 p-2 w-11/12 border-2 border-slate-600 border-solid rounded-md' placeholder='Enter your password'/>
+            <input ref={weightRef} name='password' type='password' className='text-black bg-slate-50 p-2 w-11/12 border-2 border-slate-600 border-solid rounded-md' placeholder='Enter your Weight'/>
         </div>
         <div className='w-full flex items-start justify-center gap-3 flex-col my-2'>
             <label htmlFor='password' className='text-xl font-semibold'>Pregnancy Week:</label>
-            <input ref={pregWeekRef} name='password' type='password' className='text-black bg-slate-50 p-2 w-11/12 border-2 border-slate-600 border-solid rounded-md' placeholder='Enter your password'/>
+            <input ref={pregWeekRef} name='password' type='password' className='text-black bg-slate-50 p-2 w-11/12 border-2 border-slate-600 border-solid rounded-md' placeholder='Enter your pregnancy Week'/>
         </div>
         <button onClick={handleClick} className='py-2 px-6 font-semibold text-lg border-2 border-solid border-black rounded-xl hover:bg-black hover:text-slate-200'>
             Add data
