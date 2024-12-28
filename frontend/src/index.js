@@ -17,6 +17,7 @@ import Register from './components/HealthCare/pregnancy/Register';
 import FinanceStats from './components/Finance/budgetTool/FinanceStats';
 import Chatbot from './components/chatbot';
 import PeriodTracker from './components/HealthCare/periodTracker/PeriodTracker';
+import FinancialAssist from './components/Finance/financialAssistance/FinancialAssist';
 
 const Structure = () =>{
   return(
@@ -79,6 +80,10 @@ const appRouter = createBrowserRouter([
       {
         path:'/healthcare/periodtracker',
         element: <PeriodTracker />
+      },
+      {
+        path:'/finance/assist',
+        element:<FinancialAssist />
       }
     ]
   }
