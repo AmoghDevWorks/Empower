@@ -53,7 +53,7 @@ const SOSAlert = () => {
       <Link to={'/safetyandsecurity/register'} className="p-3 bg-red-500 text-white font-bold font-sans absolute right-4 rounded-lg top-2">Add Emergency Number</Link>
       <div className="flex flex-col items-center justify-center h-screen bg-gray-100 text-gray-800">
         <h1 className="text-4xl font-bold text-red-500 mb-6">SOS Alert</h1>
-        <label htmlFor="emergencyNumber" className="text-lg text-gray-600 mb-2">
+        {/* <label htmlFor="emergencyNumber" className="text-lg text-gray-600 mb-2">
           Emergency Contact:
         </label>
         <input
@@ -63,7 +63,7 @@ const SOSAlert = () => {
           value={emergencyNumber}
           onChange={(e) => setEmergencyNumber(e.target.value)}
           className="w-full max-w-xs p-3 text-lg border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
-        />
+        /> */}
         <button
           onClick={handleSOSClick}
           className="w-full max-w-xs mt-4 p-3 bg-red-500 text-white text-lg font-semibold rounded-lg shadow-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
