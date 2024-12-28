@@ -10,15 +10,31 @@ const Register = () => {
   const pregnancyWeekRef = useRef(null)
   const user = useSelector((state) => state.user);
   const email = user?.email || "";
-  const navigate = useNavigate()
 
-  const handleClick = () =>{
+  const navigate = useNavigate()
+ 
+  const handleClick =  async() =>{
     const bloodgroup = bloodGrpRef.current.value
     const height = heightRef.current.value
     const weight = weightRef.current.value
     const pregnancyWeek = pregnancyWeekRef.current.value
     //email,bloodgroup, height,weight, pregnancyweek
-    
+    try {
+      const response = await axios.post("http://localhost:5000/pregnancy", {
+       email:email,
+       bloodgroup:bloodgroup,
+       height:height,
+       weight:weight,
+       pregnancyWeek:pregnancyWeek
+       
+
+
+      }); // Adjust the URL for deployment
+       
+      setError(null);
+    } catch (err) {
+      setError(err.response?.data?.error || "An error occurred");
+    }
     navigate('/healthcare/pregnancy')
   }
 

@@ -17,6 +17,6 @@ weight:{
  }
 
 });
-const pregnancy=mongoose.model('pregnancy', pregnancySchema);
+const Pregnancy=mongoose.model('pregnancy', pregnancySchema);
 
-module.exports = pregnancy;
+module.exports = Pregnancy;

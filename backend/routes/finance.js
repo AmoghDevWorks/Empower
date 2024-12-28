@@ -64,4 +64,18 @@ router.post('/finance', async (req, res) => {
 });
 
 
+router.get('/getfinance', async(req,res)=>{
+
+  let finance = await Finance.findOne({ email });
+   
+  res.json({
+    email:finance.email,
+    income:finance.income,
+    expenses:finance.expenses,
+    
+
+  })
+})
+
+
 module.exports = router;
