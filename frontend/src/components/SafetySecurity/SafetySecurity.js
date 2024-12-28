@@ -48,6 +48,8 @@ const SOSAlert = () => {
     }
   };
 
+  
+
   return (
     <div className="relative">
       <Link to={'/safetyandsecurity/register'} className="p-3 bg-red-500 text-white font-bold font-sans absolute right-4 rounded-lg top-2">Add Emergency Number</Link>

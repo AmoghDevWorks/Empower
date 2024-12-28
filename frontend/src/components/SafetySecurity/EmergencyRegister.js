@@ -1,14 +1,23 @@
 import React, { useRef } from 'react'
 import { useSelector } from 'react-redux'
-
+import axios from 'axios'
+import {useNavigate} from 'react-router-dom'
 const EmergencyRegister = () => {
 
   const email = useSelector((state)=>state.user.email)
   const contactNumber = useRef(null)
+  const navigate = useNavigate()
 
-  const handleClick = (e) =>{
+  const handleClick = async(e) =>{
     e.preventDefault()
     const number = contactNumber.current.value
+    try{  
+      const data = await axios('http://localhost:5000/postsosnumber',{email,number})
+      navigate('/safetyandsecurity')
+    }catch(err){
+      console.log(err)
+    }
+
   }
 
   return (
