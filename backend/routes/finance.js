@@ -1,6 +1,6 @@
 const express = require('express');
 const Finance = require('../models/finance');
-
+const User=require('../models/user')
 const router = express.Router();
 
 // Finance Route
@@ -82,6 +82,28 @@ router.get('/getfinance', async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 });
+
+router.get('/getdonar',async (req,res)=>{
+   
+ 
+ 
+
+
+
+try{
+ const donar=await User.find({role:"Donor"});
+   
+res.json({
+   donar
+})
+
+}
+catch(e){
+  console.log("the ERROR FETCHING DATA ");
+}
+
+} 
+)
 
 
 
