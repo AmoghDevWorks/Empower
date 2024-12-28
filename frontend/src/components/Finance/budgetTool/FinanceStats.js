@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
-import { Bar } from 'react-chartjs-2';
+import { Bar, Pie } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -10,6 +10,7 @@ import {
   Title,
   Tooltip,
   Legend,
+  ArcElement,
 } from 'chart.js';
 
 // Register the necessary components for Chart.js
@@ -19,7 +20,8 @@ ChartJS.register(
   BarElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  ArcElement // For pie chart
 );
 
 const FinanceStats = () => {
@@ -73,19 +75,45 @@ const FinanceStats = () => {
     return totalIncome - totalExpenses;
   };
 
-  // Prepare chart data
+  // Calculate profit or loss
+  const calculateProfitLoss = () => {
+    const totalIncome = calculateTotal(financeData?.income);
+    const totalExpenses = calculateTotal(financeData?.expenses);
+    const profitOrLoss = totalIncome - totalExpenses;
+    return profitOrLoss;
+  };
+
+  // Prepare chart data for income/expenses/savings
   const chartData = financeData ? {
-    labels: ['Income', 'Expenses'],
+    labels: ['Income', 'Expenses', 'Savings'],
     datasets: [
       {
-        label: 'Amount ($)',
-        data: [calculateTotal(financeData.income), calculateTotal(financeData.expenses)],
-        backgroundColor: ['#4CAF50', '#F44336'], // Green for income, Red for expenses
+        label: 'Amount (₹)',
+        data: [
+          calculateTotal(financeData.income),
+          calculateTotal(financeData.expenses),
+          calculateSavings(),
+        ],
+        backgroundColor: ['#4CAF50', '#F44336', '#2196F3'],
       },
     ],
   } : {};
 
-  // Chart options
+  // Prepare chart data for profit and loss
+  const profitLossData = financeData ? {
+    labels: ['Profit', 'Loss'],
+    datasets: [
+      {
+        data: [
+          calculateProfitLoss() > 0 ? calculateProfitLoss() : 0,
+          calculateProfitLoss() < 0 ? -calculateProfitLoss() : 0,
+        ],
+        backgroundColor: ['#4CAF50', '#F44336'],
+      },
+    ],
+  } : {};
+
+  // Chart options for both bar and pie chart
   const chartOptions = {
     responsive: true,
     plugins: {
@@ -173,25 +201,29 @@ const FinanceStats = () => {
           <h2 className="text-4xl underline underline-offset-4 py-4 font-semibold mb-2">Summary</h2>
           <div className="bg-slate-50 p-4 rounded">
             <p className="text-lg">
-              <strong>Total Expenses:</strong> ${calculateTotal(financeData.expenses)}
+              <strong>Total Expenses:</strong> ₹{calculateTotal(financeData.expenses)}
             </p>
             <p className="text-lg">
-              <strong>Total Income:</strong> ${calculateTotal(financeData.income)}
+              <strong>Total Income:</strong> ₹{calculateTotal(financeData.income)}
             </p>
             <p className="text-lg">
-              <strong>Savings:</strong> ${calculateSavings()}
+              <strong>Savings:</strong> ₹{calculateSavings()}
             </p>
           </div>
 
           {/* Bar Chart Display */}
-          <div className="my-6">
-            <h2 className="text-4xl font-semibold mb-4">Income vs Expenses</h2>
-            <div style={{ width: '100%', height: '400px' }}>
-              <Bar data={chartData} options={chartOptions} />
-            </div>
+          <div className="w-3/4 h-88 mx-auto mt-8">
+            <h1 className='text-4xl font-semibold underline underline-offset-2'>Graph</h1>
+            <Bar className='mx-52 my-5' data={chartData} options={chartOptions} />
           </div>
 
-          <h2 className="text-4xl font-haverbrooke underline underline-offset-2 font-semibold mt-4 my-6 pt-5 border-t-2 border-black border-solid ">Details</h2>
+          {/* Pie Chart Display for Profit and Loss */}
+          <div className="w-3/4 h-96 mx-auto mt-8 border-t-2 border-black border-solid">
+            <h2 className="text-4xl font-semibold mb-4 text-center underline underline-offset-2">Profit and Loss</h2>
+            <Pie className='mx-[33%]' data={profitLossData} options={chartOptions} />
+          </div>
+
+          <h2 className="text-4xl font-haverbrooke underline underline-offset-2 font-semibold mt-20 my-6 pt-5 border-t-2 border-black border-solid">Details</h2>
 
           <div>
             <h3 className="text-2xl underline underline-offset-2 font-semibold mb-2">Expenses:</h3>
@@ -201,7 +233,7 @@ const FinanceStats = () => {
                   <tr className="bg-gray-200">
                     <th className="border border-gray-300 px-4 py-2">Date</th>
                     <th className="border border-gray-300 px-4 py-2">Description</th>
-                    <th className="border border-gray-300 px-4 py-2">Amount ($)</th>
+                    <th className="border border-gray-300 px-4 py-2">Amount (₹)</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -231,7 +263,7 @@ const FinanceStats = () => {
                   <tr className="bg-gray-200">
                     <th className="border border-gray-300 px-4 py-2">Date</th>
                     <th className="border border-gray-300 px-4 py-2">Description</th>
-                    <th className="border border-gray-300 px-4 py-2">Amount ($)</th>
+                    <th className="border border-gray-300 px-4 py-2">Amount (₹)</th>
                   </tr>
                 </thead>
                 <tbody>
