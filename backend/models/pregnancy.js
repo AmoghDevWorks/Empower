@@ -13,8 +13,12 @@ hnw:[
     },
     weight:{
         type:Number,
+    },
+    pregnancyWeek:{
+        type:Number,
     }
-}
+},
+
 
 
 ],

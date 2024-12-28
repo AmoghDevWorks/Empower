@@ -22,12 +22,14 @@ router.post('/pregnancy', async (req, res) => {
                 bloodgroup,
                 hnw: [{
                     height,
-                    weight
-                }]
+                    weight,
+                    pregnancyWeek
+                }],
+                
             });
         } else {
             // If pregnancy data exists, we push a new height and weight record into the hnw array
-            pregnancy.hnw.push({ height, weight });
+            pregnancy.hnw.push({ height, weight,pregnancyWeek });
         }
 
         // Update pregnancy data (if needed)
