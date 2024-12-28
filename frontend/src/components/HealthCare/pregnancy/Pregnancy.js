@@ -22,7 +22,7 @@ const Pregnancy = () => {
       setPregData(response.data.pregnancy);  // Store fetched data in state
       const data = response.data.pregnancy;
       console.log(data);
-
+      
       // Dispatch to Redux
       dispatch(AddPregnancyData({
         email: email,
@@ -34,9 +34,7 @@ const Pregnancy = () => {
 
       // Step 2: Generate doctor’s advice after fetching pregnancy data
       const prompt = `Generate health advice for a pregnant woman with the following details: 
-        Height: ${data.height} cm,
-        Weight: ${data.weight} kg,
-        Pregnancy Week: ${data.pregnancyWeek} weeks.`;
+         in this object take height weight pregnancyWeek${response.data.pregnancy.height} ${response.data.pregnancy.weight} ${response.data.pregnancy.pregnancyWeek} .`;
 
       const aiResponse = await axios.post('http://localhost:5000/generate', { prompt });
       setDoctorAdvice(aiResponse.data.text || 'No content generated');
