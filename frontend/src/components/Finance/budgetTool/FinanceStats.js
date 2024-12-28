@@ -30,6 +30,7 @@ const FinanceStats = () => {
   const incomeDescRef = useRef(null);
   const expenseDescRef = useRef(null);
 
+  const [chatdata, setchatdata] = useState('');
   const [error, setError] = useState(null);
   const user = useSelector((state) => state.user);
   const email = user?.email || "";
@@ -56,7 +57,7 @@ const FinanceStats = () => {
     };
 
     try {
-      const response = await axios.post("http://localhost:5000/finance", data); // Adjust the URL for deployment
+      const response = await axios.post("http://localhost:5000/finance", data);
       setFinanceData(response.data.finance);
       setError(null);
     } catch (err) {
@@ -131,19 +132,57 @@ const FinanceStats = () => {
       alert('Login required');
       return;
     }
-  
+
     try {
       const response = await axios.get(`http://localhost:5000/getfinance?email=${email}`);
-      console.log(response.data);
       setFinanceData(response.data.finance);
     } catch (error) {
       setError(error.response?.data?.error || 'An error occurred');
     }
   };
 
-  useEffect(()=>{
+  async function getchatbotdata() {
+    if (!financeData) {
+      console.error('No finance data available.');
+      return;
+    }
+
+    try {
+      // Create a summary of the finance data to send to the chatbot for advice
+      const financeSummary = `
+        Total Income: ₹${calculateTotal(financeData.income)}
+        Total Expenses: ₹${calculateTotal(financeData.expenses)}
+        Savings: ₹${calculateSavings()}
+        Profit/Loss: ₹${calculateProfitLoss()}
+      `;
+
+      // Pass the finance summary to the chatbot backend for generating advice
+      const response = await axios.post('http://localhost:5000/generate', {
+        prompt: `Give me financial advice based on the following data: ${financeSummary}`,
+      });
+
+      // Set the response text (financial advice) from the chatbot
+      setchatdata(response.data.text);
+    } catch (e) {
+      console.error("Error fetching financial advice:", e);
+      setchatdata('Error getting financial advice.');
+    }
+  };
+
+  // Fetch finance data and get chatbot advice after financeData is set
+  useEffect(() => {
     getFinanceData();
-  },[])
+  }, [email]); // Only run when email is available
+
+  // Trigger chatbot data fetch after financeData is available
+  useEffect(() => {
+    if (financeData) {
+      // Wait for financeData to be set, then trigger chatbot data fetching
+      setTimeout(() => {
+        getchatbotdata();
+      }, 10000); // Delay of 10 seconds
+    }
+  }, [financeData]); // Only run when financeData changes
 
   return (
     <div className="text-slate-900 p-4 text-center mx-auto">
@@ -152,6 +191,7 @@ const FinanceStats = () => {
         "Fueling Ambitions, Empowering Women – Financial Freedom Starts Here."
       </h4>
 
+      {/* Inputs for finance data */}
       <div className="flex justify-center items-center w-full my-10">
         <div className="mb-4 w-2/3">
           <label htmlFor="income" className="block text-lg font-medium mb-2">
@@ -230,80 +270,53 @@ const FinanceStats = () => {
             </p>
           </div>
 
-          {/* Bar Chart Display */}
+          {/* Table displaying Income and Expense details */}
+          <div className="my-8">
+            <h3 className="text-3xl font-semibold">Income and Expense Details</h3>
+            <table className="table-auto border-collapse w-full mt-4">
+              <thead>
+                <tr>
+                  <th className="border px-4 py-2">Type</th>
+                  <th className="border px-4 py-2">Description</th>
+                  <th className="border px-4 py-2">Amount (₹)</th>
+                  <th className="border px-4 py-2">Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {financeData?.income.map((item, index) => (
+                  <tr key={index} className="hover:bg-gray-100">
+                    <td className="border px-4 py-2">Income</td>
+                    <td className="border px-4 py-2">{item.description}</td>
+                    <td className="border px-4 py-2">{item.amount}</td>
+                    <td className="border px-4 py-2">{new Date(item.date).toLocaleDateString()}</td>
+                  </tr>
+                ))}
+                {financeData?.expenses.map((item, index) => (
+                  <tr key={index} className="hover:bg-gray-100">
+                    <td className="border px-4 py-2">Expense</td>
+                    <td className="border px-4 py-2">{item.description}</td>
+                    <td className="border px-4 py-2">{item.amount}</td>
+                    <td className="border px-4 py-2">{new Date(item.date).toLocaleDateString()}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Bar Chart */}
           <div className="w-3/4 h-88 mx-auto mt-8">
-            <h1 className='text-4xl font-semibold underline underline-offset-2'>Graph</h1>
-            <Bar className='mx-52 my-5' data={chartData} options={chartOptions} />
+            <Bar data={chartData} options={chartOptions} />
           </div>
 
-          {/* Pie Chart Display for Profit and Loss */}
-          <div className="w-3/4 h-96 mx-auto mt-8 border-t-2 border-black border-solid">
-            <h2 className="text-4xl font-semibold mb-4 text-center underline underline-offset-2">Profit and Loss</h2>
-            <Pie className='mx-[33%]' data={profitLossData} options={chartOptions} />
+          {/* Profit or Loss Pie Chart */}
+          <div className="w-3/4 h-88 mx-auto mt-8">
+            <Pie data={profitLossData} options={chartOptions} />
           </div>
 
-          <h2 className="text-4xl font-haverbrooke underline underline-offset-2 font-semibold mt-20 my-6 pt-5 border-t-2 border-black border-solid">Details</h2>
-
-          <div>
-            <h3 className="text-2xl underline underline-offset-2 font-semibold mb-2">Expenses:</h3>
-            {financeData.expenses.length > 0 ? (
-              <table className="table-auto border-collapse border border-gray-300 w-full mb-6">
-                <thead>
-                  <tr className="bg-gray-200">
-                    <th className="border border-gray-300 px-4 py-2">Date</th>
-                    <th className="border border-gray-300 px-4 py-2">Description</th>
-                    <th className="border border-gray-300 px-4 py-2">Amount (₹)</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {financeData.expenses.map((expense, index) => (
-                    <tr key={index} className="text-center">
-                      <td className="border border-gray-300 px-4 py-2">
-                        {new Date(expense.date).toLocaleDateString()}
-                      </td>
-                      <td className="border border-gray-300 px-4 py-2">
-                        {expense.description}
-                      </td>
-                      <td className="border border-gray-300 px-4 py-2">
-                        {expense.amount}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            ) : (
-              <p>No expenses recorded.</p>
-            )}
-
-            <h3 className="text-2xl underline underline-offset-2 font-semibold mb-2 py-5 border-t-2 border-slate-400 border-solid">Income:</h3>
-            {financeData.income.length > 0 ? (
-              <table className="table-auto border-collapse border border-gray-300 w-full">
-                <thead>
-                  <tr className="bg-gray-200">
-                    <th className="border border-gray-300 px-4 py-2">Date</th>
-                    <th className="border border-gray-300 px-4 py-2">Description</th>
-                    <th className="border border-gray-300 px-4 py-2">Amount (₹)</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {financeData.income.map((income, index) => (
-                    <tr key={index} className="text-center">
-                      <td className="border border-gray-300 px-4 py-2">
-                        {new Date(income.date).toLocaleDateString()}
-                      </td>
-                      <td className="border border-gray-300 px-4 py-2">
-                        {income.description}
-                      </td>
-                      <td className="border border-gray-300 px-4 py-2">
-                        {income.amount}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            ) : (
-              <p>No income recorded.</p>
-            )}
+          {/* Chatbot advice */}
+          <div className="mt-8">
+            <h3 className="text-3xl">Financial Advice:</h3>
+            <p className="text-lg">{chatdata}</p>
           </div>
         </div>
       )}
