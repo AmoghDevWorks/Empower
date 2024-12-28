@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { Bar, Pie } from 'react-chartjs-2';
@@ -125,6 +125,25 @@ const FinanceStats = () => {
       },
     },
   };
+
+  const getFinanceData = async () => {
+    if (!email) {
+      alert('Login required');
+      return;
+    }
+  
+    try {
+      const response = await axios.get(`http://localhost:5000/getfinance?email=${email}`);
+      console.log(response.data);
+      setFinanceData(response.data.finance);
+    } catch (error) {
+      setError(error.response?.data?.error || 'An error occurred');
+    }
+  };
+
+  useEffect(()=>{
+    getFinanceData();
+  },[])
 
   return (
     <div className="text-slate-900 p-4 text-center mx-auto">

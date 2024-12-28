@@ -64,18 +64,25 @@ router.post('/finance', async (req, res) => {
 });
 
 
-router.get('/getfinance', async(req,res)=>{
+router.get('/getfinance', async (req, res) => {
+  const { email } = req.query; // Extract email from query parameter
+  if (!email) {
+    return res.status(400).json({ error: 'Email is required' });
+  }
 
-  let finance = await Finance.findOne({ email });
-   
-  res.json({
-    email:finance.email,
-    income:finance.income,
-    expenses:finance.expenses,
-    
+  try {
+    let finance = await Finance.findOne({ email });
+    if (!finance) {
+      return res.status(404).json({ error: 'Finance data not found for this email' });
+    }
 
-  })
-})
+    res.json({ finance });
+  } catch (error) {
+    console.error('Error fetching finance data:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 
 
 module.exports = router;
