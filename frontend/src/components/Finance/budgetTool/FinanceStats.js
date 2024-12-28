@@ -1,6 +1,26 @@
 import React, { useRef, useState } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import { Bar } from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+
+// Register the necessary components for Chart.js
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const FinanceStats = () => {
   const incomeRef = useRef(null);
@@ -13,6 +33,7 @@ const FinanceStats = () => {
   const email = user?.email || "";
   const [financeData, setFinanceData] = useState(null);
 
+  // Add finance data to backend
   const addFinanceData = async () => {
     const data = {
       email,
@@ -41,15 +62,49 @@ const FinanceStats = () => {
     }
   };
 
+  // Calculate total income or expenses
   const calculateTotal = (items) =>
     items?.reduce((sum, item) => sum + item.amount, 0) || 0;
+
+  // Calculate savings
+  const calculateSavings = () => {
+    const totalIncome = calculateTotal(financeData?.income);
+    const totalExpenses = calculateTotal(financeData?.expenses);
+    return totalIncome - totalExpenses;
+  };
+
+  // Prepare chart data
+  const chartData = financeData ? {
+    labels: ['Income', 'Expenses'],
+    datasets: [
+      {
+        label: 'Amount ($)',
+        data: [calculateTotal(financeData.income), calculateTotal(financeData.expenses)],
+        backgroundColor: ['#4CAF50', '#F44336'], // Green for income, Red for expenses
+      },
+    ],
+  } : {};
+
+  // Chart options
+  const chartOptions = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      tooltip: {
+        enabled: true,
+      },
+    },
+  };
 
   return (
     <div className="text-slate-900 p-4 text-center mx-auto">
       <h1 className="text-6xl font-bold mb-4">Finance Statistics</h1>
       <h4 className="text-slate-600 my-5 text-xl">
-        "Fueling Ambitions, Empowering Women – Financial Freedom Starts Here."
+        "Fueling Ambitions, Empowering Women – Financial Freedom Starts Here."
       </h4>
+
       <div className="flex justify-center items-center w-full my-10">
         <div className="mb-4 w-2/3">
           <label htmlFor="income" className="block text-lg font-medium mb-2">
@@ -76,6 +131,7 @@ const FinanceStats = () => {
           />
         </div>
       </div>
+
       <div className="flex justify-center items-center w-full">
         <div className="mb-4 w-2/3">
           <label htmlFor="expenseAmount" className="block text-lg font-medium mb-2">
@@ -102,6 +158,7 @@ const FinanceStats = () => {
           />
         </div>
       </div>
+
       <button
         onClick={addFinanceData}
         className="bg-indigo-600 font-semibold text-white py-2 px-4 rounded mb-4"
@@ -121,9 +178,19 @@ const FinanceStats = () => {
             <p className="text-lg">
               <strong>Total Income:</strong> ${calculateTotal(financeData.income)}
             </p>
+            <p className="text-lg">
+              <strong>Savings:</strong> ${calculateSavings()}
+            </p>
           </div>
 
-          
+          {/* Bar Chart Display */}
+          <div className="my-6">
+            <h2 className="text-4xl font-semibold mb-4">Income vs Expenses</h2>
+            <div style={{ width: '100%', height: '400px' }}>
+              <Bar data={chartData} options={chartOptions} />
+            </div>
+          </div>
+
           <h2 className="text-4xl font-haverbrooke underline underline-offset-2 font-semibold mt-4 my-6 pt-5 border-t-2 border-black border-solid ">Details</h2>
 
           <div>
