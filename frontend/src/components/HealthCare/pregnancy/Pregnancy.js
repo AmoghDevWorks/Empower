@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { AddPregnancyData } from '../../../utils/PregnancySlice';
 
 const Pregnancy = () => {
   const email = useSelector((state) => state.user.email); // Get email from Redux state
+  const pregRedux = useSelector((state)=>state.pregnancy)
+  const dispatch = useDispatch()
 
   const [pregData, setPregData] = useState(null); // State to store pregnancy data
 
@@ -15,6 +18,8 @@ const Pregnancy = () => {
       const response = await axios.get(`http://localhost:5000/getpregnancy?email=${email}`);
       console.log(response.data);
       setPregData(response.data.pregnancy);  // Store fetched data in state
+      const data = response.data.pregnancy
+      dispatch(AddPregnancyData({email:email,bloodgroup:data.bloodgroup,height:data.height,weight:data.weight,pWeek:data.pregnancyWeek}))
     } catch (err) {
       console.error("Error fetching pregnancy data:", err);
     }
@@ -42,14 +47,14 @@ const Pregnancy = () => {
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Follow your pregnancy journey with ease! Get personalized updates, expert advice, and timely reminders every step of the way. From your baby’s first movements to the big day, our tracker keeps you informed and supported, making this special time memorable and stress-free.
           </p>
         </section>
-        <div className='flex items-center justify-center my-10'>
+        {!pregRedux && <div className='flex items-center justify-center my-10'>
           <Link
             to={'/healthcare/pregnancy/register'}
             className="px-6 py-2.5 text-white text-lg font-bold uppercase tracking-widest rounded-lg bg-indigo-500 shadow-xl transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500"
           >
             Register
           </Link>
-        </div>
+        </div>}
       </div>
 
       {/* Display fetched pregnancy data */}

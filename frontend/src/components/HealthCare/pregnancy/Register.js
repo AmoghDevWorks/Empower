@@ -1,7 +1,8 @@
 import React, { useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { AddPregnancyData } from '../../../utils/PregnancySlice';
 
 const Register = () => {
     const bloodGrpRef = useRef(null);
@@ -12,7 +13,8 @@ const Register = () => {
     const email = user?.email || '';
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
-
+    
+    const dispatch = useDispatch()
     const navigate = useNavigate();
 
     const handleClick = async () => {
@@ -38,6 +40,7 @@ const Register = () => {
 
             setError(null);
             setSuccess(response.data.message);
+            dispatch(AddPregnancyData({email:email,bloodgroup:bloodgroup,height:height,weight:weight,pWeek:pregnancyWeek}))
 
             // Clear form after success
             bloodGrpRef.current.value = '';
