@@ -10,7 +10,7 @@ const FinanceStats = () => {
 
   const [error, setError] = useState(null);
   const user = useSelector((state) => state.user);
-  const email = user?.email || ""; 
+  const email = user?.email || "";
   const [financeData, setFinanceData] = useState(null);
 
   const addFinanceData = async () => {
@@ -104,17 +104,17 @@ const FinanceStats = () => {
       </div>
       <button
         onClick={addFinanceData}
-        className="bg-indigo-600 text-white py-2 px-4 rounded mb-4"
+        className="bg-indigo-600 font-semibold text-white py-2 px-4 rounded mb-4"
       >
-        Add Finance Data
+        Add Data
       </button>
 
       {error && <p className="text-red-500">{error}</p>}
 
       {financeData && (
         <div className="mt-4">
-          <h2 className="text-xl font-semibold mb-2">Summary</h2>
-          <div className="bg-gray-100 p-4 rounded">
+          <h2 className="text-4xl underline underline-offset-4 py-4 font-semibold mb-2">Summary</h2>
+          <div className="bg-slate-50 p-4 rounded">
             <p className="text-lg">
               <strong>Total Expenses:</strong> ${calculateTotal(financeData.expenses)}
             </p>
@@ -122,31 +122,67 @@ const FinanceStats = () => {
               <strong>Total Income:</strong> ${calculateTotal(financeData.income)}
             </p>
           </div>
-          <h2 className="text-xl font-semibold mt-4 mb-2">Details</h2>
+
+          
+          <h2 className="text-4xl font-haverbrooke underline underline-offset-2 font-semibold mt-4 my-6 pt-5 border-t-2 border-black border-solid ">Details</h2>
+
           <div>
-            <h3 className="text-lg font-bold mb-2">Expenses:</h3>
+            <h3 className="text-2xl underline underline-offset-2 font-semibold mb-2">Expenses:</h3>
             {financeData.expenses.length > 0 ? (
-              <ul className="list-disc ml-6">
-                {financeData.expenses.map((expense, index) => (
-                  <li key={index}>
-                    ${expense.amount} - {expense.description} (
-                    {new Date(expense.date).toLocaleDateString()})
-                  </li>
-                ))}
-              </ul>
+              <table className="table-auto border-collapse border border-gray-300 w-full mb-6">
+                <thead>
+                  <tr className="bg-gray-200">
+                    <th className="border border-gray-300 px-4 py-2">Date</th>
+                    <th className="border border-gray-300 px-4 py-2">Description</th>
+                    <th className="border border-gray-300 px-4 py-2">Amount ($)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {financeData.expenses.map((expense, index) => (
+                    <tr key={index} className="text-center">
+                      <td className="border border-gray-300 px-4 py-2">
+                        {new Date(expense.date).toLocaleDateString()}
+                      </td>
+                      <td className="border border-gray-300 px-4 py-2">
+                        {expense.description}
+                      </td>
+                      <td className="border border-gray-300 px-4 py-2">
+                        {expense.amount}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             ) : (
               <p>No expenses recorded.</p>
             )}
-            <h3 className="text-lg font-bold mt-4 mb-2">Income:</h3>
+
+            <h3 className="text-2xl underline underline-offset-2 font-semibold mb-2 py-5 border-t-2 border-slate-400 border-solid">Income:</h3>
             {financeData.income.length > 0 ? (
-              <ul className="list-disc ml-6">
-                {financeData.income.map((income, index) => (
-                  <li key={index}>
-                    ${income.amount} - {income.description} (
-                    {new Date(income.date).toLocaleDateString()})
-                  </li>
-                ))}
-              </ul>
+              <table className="table-auto border-collapse border border-gray-300 w-full">
+                <thead>
+                  <tr className="bg-gray-200">
+                    <th className="border border-gray-300 px-4 py-2">Date</th>
+                    <th className="border border-gray-300 px-4 py-2">Description</th>
+                    <th className="border border-gray-300 px-4 py-2">Amount ($)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {financeData.income.map((income, index) => (
+                    <tr key={index} className="text-center">
+                      <td className="border border-gray-300 px-4 py-2">
+                        {new Date(income.date).toLocaleDateString()}
+                      </td>
+                      <td className="border border-gray-300 px-4 py-2">
+                        {income.description}
+                      </td>
+                      <td className="border border-gray-300 px-4 py-2">
+                        {income.amount}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             ) : (
               <p>No income recorded.</p>
             )}
