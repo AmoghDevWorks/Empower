@@ -19,13 +19,13 @@ const Login = () => {
 
     try {
       const response = await axios.post('http://localhost:5000/api/auth/login', { email, password });
-      alert(response.data.message);
-      console.log(response)
+      
+      // console.log(response)
       
       const user = response.data.user
       // Handle success (You can store JWT in localStorage)
       dispatch(addUser({uid:user.id,Name:user.name,email:email,contact:user.contact,role:user.role}))
-      toast.success('SignUp successfull', {
+      toast.success('SignIn successfull', {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
