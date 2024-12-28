@@ -270,13 +270,12 @@ const FinanceStats = () => {
             </p>
           </div>
 
-          {/* Table displaying Income and Expense details */}
+          {/* Separate Income Table */}
           <div className="my-8">
-            <h3 className="text-3xl font-semibold">Income and Expense Details</h3>
+            <h3 className="text-3xl font-semibold">Income Details</h3>
             <table className="table-auto border-collapse w-full mt-4">
               <thead>
                 <tr>
-                  <th className="border px-4 py-2">Type</th>
                   <th className="border px-4 py-2">Description</th>
                   <th className="border px-4 py-2">Amount (₹)</th>
                   <th className="border px-4 py-2">Date</th>
@@ -285,15 +284,6 @@ const FinanceStats = () => {
               <tbody>
                 {financeData?.income.map((item, index) => (
                   <tr key={index} className="hover:bg-gray-100">
-                    <td className="border px-4 py-2">Income</td>
-                    <td className="border px-4 py-2">{item.description}</td>
-                    <td className="border px-4 py-2">{item.amount}</td>
-                    <td className="border px-4 py-2">{new Date(item.date).toLocaleDateString()}</td>
-                  </tr>
-                ))}
-                {financeData?.expenses.map((item, index) => (
-                  <tr key={index} className="hover:bg-gray-100">
-                    <td className="border px-4 py-2">Expense</td>
                     <td className="border px-4 py-2">{item.description}</td>
                     <td className="border px-4 py-2">{item.amount}</td>
                     <td className="border px-4 py-2">{new Date(item.date).toLocaleDateString()}</td>
@@ -303,13 +293,36 @@ const FinanceStats = () => {
             </table>
           </div>
 
-          {/* Bar Chart */}
-          <div className="w-3/4 h-88 mx-auto mt-8">
+          {/* Separate Expense Table */}
+          <div className="my-8">
+            <h3 className="text-3xl font-semibold">Expense Details</h3>
+            <table className="table-auto border-collapse w-full mt-4">
+              <thead>
+                <tr>
+                  <th className="border px-4 py-2">Description</th>
+                  <th className="border px-4 py-2">Amount (₹)</th>
+                  <th className="border px-4 py-2">Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {financeData?.expenses.map((item, index) => (
+                  <tr key={index} className="hover:bg-gray-100">
+                    <td className="border px-4 py-2">{item.description}</td>
+                    <td className="border px-4 py-2">{item.amount}</td>
+                    <td className="border px-4 py-2">{new Date(item.date).toLocaleDateString()}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Bar Chart (Smaller) */}
+          <div className="w-1/2 h-64 mx-auto mt-8">
             <Bar data={chartData} options={chartOptions} />
           </div>
 
-          {/* Profit or Loss Pie Chart */}
-          <div className="w-3/4 h-88 mx-auto mt-8">
+          {/* Profit or Loss Pie Chart (Smaller) */}
+          <div className="w-1/2 h-64 mx-auto mt-8">
             <Pie data={profitLossData} options={chartOptions} />
           </div>
 
