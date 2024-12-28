@@ -20,7 +20,7 @@ router.post('/pregnancy', async (req, res) => {
          
     
         // Find prgnancy document by email,bloodgroup,height,weight,prenancy week
-        let  pregnancy = await Pregnancy.insert({ email:email,
+        let  pregnancy = await Pregnancy.create({ email:email,
             bloodgroup:bloodgroup,
             height:height,
             weight:weight, 
@@ -28,7 +28,7 @@ router.post('/pregnancy', async (req, res) => {
 
          });
 
-         if(!pregnacy){
+         if(!pregnancy){
             res.json({
                 meassge:"an eror ocuured in pushing prgnancy data"
             })
