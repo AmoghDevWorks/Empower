@@ -47,7 +47,7 @@ const Finance = () => {
                     <div className="flex-grow">
                         <h2 className="text-gray-900 text-2xl title-font font-medium mb-3">Financial Advisor</h2>
                         <p className="leading-relaxed text-base">Connect with a virtual financial expert for tailored guidance. Get advice on budgeting, saving, and investing to make informed financial decisions</p>
-                        <Link className="mt-3 text-indigo-500 inline-flex items-center">Learn More
+                        <Link to={'/chatbot'} className="mt-3 text-indigo-500 inline-flex items-center">Learn More
                             <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
                             <path d="M5 12h14M12 5l7 7-7 7"></path>
                             </svg>

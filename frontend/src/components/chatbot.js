@@ -33,9 +33,9 @@ function Chatbot() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+    <div className="min-h-screen text-slate-800 bg-gray-100 flex items-center justify-center">
       <div className="w-full max-w-2xl bg-white shadow-lg rounded-lg p-6">
-        <h1 className="text-2xl font-bold text-gray-800 mb-4">AI Content Generator</h1>
+        <h1 className="text-4xl font-bold text-gray-800 mb-4 text-center font-haverbrooke">AI Assistant</h1>
         <form onSubmit={handleSubmit} className="space-y-4">
           <textarea
             value={prompt}
