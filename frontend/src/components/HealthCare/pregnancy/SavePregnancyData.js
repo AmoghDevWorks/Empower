@@ -1,10 +1,12 @@
 import React, { useRef } from 'react'
+import { useSelector } from 'react-redux'
 
 const SavePregnancyData = () => {
 
   const heightRef = useRef(null)
   const weightRef = useRef(null)
   const pregWeekRef = useRef(null)
+  const email = useSelector((state) => state.action.email)
 
   const handleClick = () =>{
         const height = heightRef.current.value
