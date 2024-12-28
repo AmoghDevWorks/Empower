@@ -5,17 +5,19 @@ const pregnancySchema = new mongoose.Schema({
    bloodgroup:{
     type:String
 },
-height:{
-    type:Number,
+hnw:[
+{
+    height:{
+        type:Number,
 
-},
-weight:{
-    type:Number,
-},
- pregnancyWeek:{
-    type:Number,
- }
+    },
+    weight:{
+        type:Number,
+    }
+}
 
+
+],
 });
 const Pregnancy=mongoose.model('pregnancy', pregnancySchema);
 

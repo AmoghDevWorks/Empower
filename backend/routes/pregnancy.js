@@ -2,7 +2,7 @@ const express = require('express');
 const Pregnancy = require('../models/pregnancy');
 const router = express.Router();
 
-// pregnancy Route for creating/updating data
+// Route for creating/updating pregnancy data
 router.post('/pregnancy', async (req, res) => {
     try {
         const { email, bloodgroup, height, weight, pregnancyWeek } = req.body;
@@ -12,22 +12,34 @@ router.post('/pregnancy', async (req, res) => {
             return res.status(400).json({ error: 'All fields are required' });
         }
 
-        // Create pregnancy document
-        const pregnancy = await Pregnancy.create({
-            email,
-            bloodgroup,
-            height,
-            weight,
-            pregnancyWeek
-        });
+        // Check if pregnancy data for the email already exists
+        let pregnancy = await Pregnancy.findOne({ email });
 
         if (!pregnancy) {
-            return res.status(500).json({ error: 'Error creating pregnancy data' });
+            // If no pregnancy data exists for the email, create a new one
+            pregnancy = new Pregnancy({
+                email,
+                bloodgroup,
+                hnw: [{
+                    height,
+                    weight
+                }]
+            });
+        } else {
+            // If pregnancy data exists, we push a new height and weight record into the hnw array
+            pregnancy.hnw.push({ height, weight });
         }
+
+        // Update pregnancy data (if needed)
+        pregnancy.bloodgroup = bloodgroup;
+        pregnancy.pregnancyWeek = pregnancyWeek;
+
+        // Save the updated or new pregnancy data
+        await pregnancy.save();
 
         res.status(200).json({
             message: 'Pregnancy data updated successfully',
-            pregnancy,
+            pregnancy
         });
     } catch (error) {
         console.error('Error updating pregnancy data:', error);
@@ -35,7 +47,7 @@ router.post('/pregnancy', async (req, res) => {
     }
 });
 
-// Route to fetch pregnancy data by email (GET request with query parameters)
+// Route to fetch pregnancy data by email
 router.get('/getpregnancy', async (req, res) => {
     const { email } = req.query;  // Use req.query to get query parameters
 
