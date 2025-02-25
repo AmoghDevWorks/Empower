@@ -21,7 +21,7 @@ const Pregnancy = () => {
       const response = await axios.get(`http://localhost:5000/getpregnancy?email=${email}`);
       setPregData(response.data.pregnancy);  // Store fetched data in state
       const data = response.data.pregnancy;
-      console.log(data);
+      // console.log('data is',data);
       
       // Dispatch to Redux
       dispatch(AddPregnancyData({
@@ -33,8 +33,15 @@ const Pregnancy = () => {
       }));
 
       // Step 2: Generate doctor’s advice after fetching pregnancy data
-      const prompt = `Generate health advice for a pregnant woman with the following details: 
-         in this object take height weight pregnancyWeek${response.data.pregnancy.height} ${response.data.pregnancy.weight} ${response.data.pregnancy.pregnancyWeek} .`;
+      const arr = data.hnw;
+      console.log(arr)
+
+      let details = '';
+      arr.forEach((item, index) => {
+        details += `\n${index + 1}. Height: ${item.height}, Weight: ${item.weight}, Pregnancy Week: ${item.pregnancyWeek}`;
+      });
+
+      const prompt = `Generate health advice for a pregnant woman based on the following records: ${details} where height and weight is in the inches and pregnency in weeks`;
 
       const aiResponse = await axios.post('http://localhost:5000/generate', { prompt });
       setDoctorAdvice(aiResponse.data.text || 'No content generated');
@@ -126,7 +133,7 @@ const Pregnancy = () => {
       {doctorAdvice && (
         <div className="py-6 px-32 text-center mt-6 border-t-2 border-slate-400">
           <h3 className="text-3xl font-semibold">Doctor's Advice</h3>
-          <p className="mt-4 text-lg">{doctorAdvice}</p>
+          <p className="mt-4 text-lg text-justify">{doctorAdvice}</p>
         </div>
       )}
 
