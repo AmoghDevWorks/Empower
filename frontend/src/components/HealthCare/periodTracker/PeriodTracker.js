@@ -63,7 +63,7 @@ const PeriodTracker = () => {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="flex flex-col">
             <label htmlFor="lmp" className="text-sm font-medium text-gray-700">
-              Last Menstrual Period (YYYY-MM-DD):
+              Last Menstrual Period (DD-MM-YYYY):
             </label>
             <input
               type="date"
@@ -102,7 +102,7 @@ const PeriodTracker = () => {
           </div>
           <div className="flex flex-col">
             <label htmlFor="cycles" className="text-sm font-medium text-gray-700">
-              Past Cycle Lengths (comma-separated, in days):
+              Past Cycle Lengths (comma-separated):
             </label>
             <input
               type="text"
@@ -110,7 +110,7 @@ const PeriodTracker = () => {
               value={formData.cycles.join(", ")}
               onChange={handleCycleChange}
               placeholder="e.g., 28, 29, 30"
-              className="mt-1 p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+              className="mt-1 p-2 text-black border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
           <button
