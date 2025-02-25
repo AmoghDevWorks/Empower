@@ -18,9 +18,10 @@ const PeriodTracker = () => {
   };
 
   const handleCycleChange = (e) => {
-    const value = e.target.value.split(",").map((cycle) => parseInt(cycle.trim())).filter((cycle) => !isNaN(cycle));
-    setFormData({ ...formData, cycles: value });
+    const value = e.target.value;
+    setFormData({ ...formData, cycles: value.split(",").map((cycle) => cycle.trim()) });
   };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();

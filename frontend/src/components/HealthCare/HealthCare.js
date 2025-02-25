@@ -20,7 +20,7 @@ const HealthCare = () => {
                         <h2 className="text-gray-900 text-2xl title-font font-medium mb-3">Pregnancy</h2>
                         <p className="leading-relaxed text-base">Track your baby's growth week by week, monitor symptoms, and get tailored tips for each stage of your pregnancy. Stay organized with logs for appointments, tests, and milestones. </p>
                         <Link to={'/healthcare/pregnancy'} className="mt-3 text-indigo-500 inline-flex items-center  ">Learn More
-                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                            <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
                             <path d="M5 12h14M12 5l7 7-7 7"></path>
                             </svg>
                         </Link>
@@ -34,7 +34,7 @@ const HealthCare = () => {
                         <h2 className="text-gray-900 text-2xl title-font font-medium mb-3">Period Tracker</h2>
                         <p className="leading-relaxed text-base">Log your periods, symptoms, and moods to predict your next cycle. Understand your patterns, track ovulation, and receive timely reminders to stay prepared. </p>
                         <Link to={'/healthcare/periodtracker'} className="mt-3 text-indigo-500 inline-flex items-center">Learn More
-                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                            <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
                             <path d="M5 12h14M12 5l7 7-7 7"></path>
                             </svg>
                         </Link>
@@ -48,7 +48,7 @@ const HealthCare = () => {
                         <h2 className="text-gray-900 text-2xl title-font font-medium mb-3">Communicate</h2>
                         <p className="leading-relaxed text-base">Easily connect with your doctor for advice or schedule appointments. Whether for quick questions or follow-ups, support is always within reach.</p>
                         <Link to={'/healthcare/communicate'} className="mt-3 text-indigo-500 inline-flex items-center">Learn More
-                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                            <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
                             <path d="M5 12h14M12 5l7 7-7 7"></path>
                             </svg>
                         </Link>

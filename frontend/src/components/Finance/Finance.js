@@ -20,7 +20,7 @@ const Finance = () => {
                         <h2 className="text-gray-900 text-2xl title-font font-medium mb-3">Budget Tool</h2>
                         <p className="leading-relaxed text-base">Plan your finances with ease using our Budget Tool. Set spending limits, monitor expenses, and achieve your financial goals effectively.</p>
                         <Link to={'/finance/budgettools'} className="mt-3 text-indigo-500 inline-flex items-center  ">Learn More
-                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                            <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
                             <path d="M5 12h14M12 5l7 7-7 7"></path>
                             </svg>
                         </Link>
@@ -34,7 +34,7 @@ const Finance = () => {
                         <h2 className="text-gray-900 text-2xl title-font font-medium mb-3">Financial Assist</h2>
                         <p className="leading-relaxed text-base">Receive support from generous donors to fund your needs and initiatives. Manage contributions effortlessly and keep track of all incoming donations.</p>
                         <Link to={'/finance/assist'} className="mt-3 text-indigo-500 inline-flex items-center">Learn More
-                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                            <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
                             <path d="M5 12h14M12 5l7 7-7 7"></path>
                             </svg>
                         </Link>
@@ -48,7 +48,7 @@ const Finance = () => {
                         <h2 className="text-gray-900 text-2xl title-font font-medium mb-3">Financial Advisor</h2>
                         <p className="leading-relaxed text-base">Connect with a virtual financial expert for tailored guidance. Get advice on budgeting, saving, and investing to make informed financial decisions</p>
                         <Link to={'/chatbot'} className="mt-3 text-indigo-500 inline-flex items-center">Learn More
-                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                            <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
                             <path d="M5 12h14M12 5l7 7-7 7"></path>
                             </svg>
                         </Link>
