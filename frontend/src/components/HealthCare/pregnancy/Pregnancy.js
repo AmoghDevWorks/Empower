@@ -112,16 +112,16 @@ const Pregnancy = () => {
             <thead>
               <tr>
                 <th className="px-4 py-2 border border-gray-300 font-bold font-haverbrooke text-center">Pregnancy Week</th>
-                <th className="px-4 py-2 border border-gray-300 font-bold font-haverbrooke text-center">Height (cm)</th>
-                <th className="px-4 py-2 border border-gray-300 font-bold font-haverbrooke text-center">Weight (kg)</th>
+                <th className="px-4 py-2 border border-gray-300 font-bold font-haverbrooke text-center">Height (in cms)</th>
+                <th className="px-4 py-2 border border-gray-300 font-bold font-haverbrooke text-center">Weight (in kgs)</th>
               </tr>
             </thead>
             <tbody>
               {pregData.hnw.map((item, index) => (
                 <tr key={item._id}>
                   <td className="px-4 py-2 border border-gray-300">{item.pregnancyWeek} weeks</td>
-                  <td className="px-4 py-2 border border-gray-300">{item.height} cm</td>
-                  <td className="px-4 py-2 border border-gray-300">{item.weight} kg</td>
+                  <td className="px-4 py-2 border border-gray-300">{item.height}</td>
+                  <td className="px-4 py-2 border border-gray-300">{item.weight}</td>
                 </tr>
               ))}
             </tbody>
