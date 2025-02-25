@@ -9,7 +9,7 @@ const router = express.Router();
 // Register user
 router.post('/register', async (req, res) => {
   const {name, email,contact, password,role } = req.body;
-  console.log(role);
+  // console.log(role);
   try {
     const userExists = await User.findOne({ email });
     if (userExists) {
@@ -51,7 +51,7 @@ router.post('/login', async (req, res) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
     // Create a user object to send back, excluding sensitive information
-    console.log(user)
+    // console.log(user)
     const userResponse = {
       id: user._id,
       name: user.name,

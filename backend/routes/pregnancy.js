@@ -78,7 +78,7 @@ router.get('/getpregnancy', async (req, res) => {
 router.post('/updatepregnancy', async (req, res) => {
     try {
         const { email, pregnancyWeek, height, weight } = req.body;
-        console.log(req.body);  // Logs the incoming data for debugging
+        // console.log(req.body);  // Logs the incoming data for debugging
 
         // Validate inputs
         if (!email || !pregnancyWeek || !height || !weight) {

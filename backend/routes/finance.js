@@ -7,7 +7,7 @@ const router = express.Router();
 router.post('/finance', async (req, res) => {
   try {
     const { email, expenses, income } = req.body;
-    console.log(req.body)
+    // console.log(req.body)
 
     // Validate inputs
     if (!email) {
@@ -84,25 +84,19 @@ router.get('/getfinance', async (req, res) => {
 });
 
 router.get('/getdonar',async (req,res)=>{
-   
- 
- 
+  try{
+    const donar=await User.find({role:"Donor"});
+    
+ res.json({
+    donar
+  })
 
+  }
+  catch(e){
+    console.log("the ERROR FETCHING DATA ");
+  }
 
-
-try{
- const donar=await User.find({role:"Donor"});
-   
-res.json({
-   donar
-})
-
-}
-catch(e){
-  console.log("the ERROR FETCHING DATA ");
-}
-
-} 
+  } 
 )
 
 

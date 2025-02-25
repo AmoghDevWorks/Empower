@@ -26,7 +26,9 @@ const PeriodTracker = () => {
     e.preventDefault();
     try {
       setError("");
+      console.log('formdata is:',formData)
       const response = await axios.post("http://localhost:5000/track", formData);
+      console.log('response:',response)
       setResult(response.data);
     } catch (err) {
       setError("Error calculating period tracking. Please check your inputs.");
